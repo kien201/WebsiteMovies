@@ -1,0 +1,55 @@
+﻿@model WebsiteMovies.Models.Account
+
+@{
+    ViewBag.Title = "Đặt lại mật khẩu";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Bạn có chắc muốn đặt lại mật khẩu?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.displayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+
+        <dd>
+            @(Model.role == 0 ? "Admin" : "Thành viên")
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Đặt lại mật khẩu" class="btn btn-primary" /> |
+            @Html.ActionLink("Trở về", "Edit", new { id = Model.id })
+        </div>
+    }
+</div>

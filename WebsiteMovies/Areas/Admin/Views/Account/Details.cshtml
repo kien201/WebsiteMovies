@@ -1,0 +1,49 @@
+﻿@model WebsiteMovies.Models.Account
+
+@{
+    ViewBag.Title = "Chi tiết tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <h4>Chi tiết tài khoản</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.displayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+
+        <dd>
+            @(Model.role == 0 ? "Admin" : "Thành viên")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

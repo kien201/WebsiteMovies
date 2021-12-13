@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MovieModelStoreContainer" CdmEntityContainer="MovieEntities">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="MovieModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="MovieModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryDetails">
+      <EntityTypeMapping TypeName="MovieModel.CategoryDetails">
+        <MappingFragment StoreEntitySet="CategoryDetails">
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="MovieModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="fatherComment" ColumnName="fatherComment" />
+          <ScalarProperty Name="commentDate" ColumnName="commentDate" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="episode">
+      <EntityTypeMapping TypeName="MovieModel.episode">
+        <MappingFragment StoreEntitySet="episode">
+          <ScalarProperty Name="video" ColumnName="video" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="episodeName" ColumnName="episodeName" />
+          <ScalarProperty Name="episodeNumber" ColumnName="episodeNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="follow">
+      <EntityTypeMapping TypeName="MovieModel.follow">
+        <MappingFragment StoreEntitySet="follow">
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="history">
+      <EntityTypeMapping TypeName="MovieModel.history">
+        <MappingFragment StoreEntitySet="history">
+          <ScalarProperty Name="episodeId" ColumnName="episodeId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movie">
+      <EntityTypeMapping TypeName="MovieModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="part" ColumnName="part" />
+          <ScalarProperty Name="seriesId" ColumnName="seriesId" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="releaseYear" ColumnName="releaseYear" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="anotherName" ColumnName="anotherName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovieRate">
+      <EntityTypeMapping TypeName="MovieModel.MovieRate">
+        <MappingFragment StoreEntitySet="MovieRate">
+          <ScalarProperty Name="rateNumber" ColumnName="rateNumber" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Series">
+      <EntityTypeMapping TypeName="MovieModel.Series">
+        <MappingFragment StoreEntitySet="Series">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewsByDate">
+      <EntityTypeMapping TypeName="MovieModel.viewsByDate">
+        <MappingFragment StoreEntitySet="viewsByDate">
+          <ScalarProperty Name="numView" ColumnName="numView" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

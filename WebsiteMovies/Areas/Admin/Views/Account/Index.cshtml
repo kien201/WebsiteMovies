@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebsiteMovies.Models.Account>
+
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Quản lý tài khoản</li>
+</ol>
+
+<p>
+    @Html.ActionLink("Thêm tài khoản", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.displayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role)
+        </th>
+        <th>Chức năng</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.displayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @(item.role == 0 ? "Admin" : "Thành viên")
+        </td>
+        <td>
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
+            @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
