@@ -131,8 +131,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Code\Md5hash.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SeriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -146,6 +148,8 @@
     <Compile Include="Models\CategoryDetails.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryMetadata.cs" />
+    <Compile Include="Models\CategoryPartial.cs" />
     <Compile Include="Models\Comment.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
@@ -185,6 +189,8 @@
     <Compile Include="Models\Series.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SeriesMetadata.cs" />
+    <Compile Include="Models\SeriesPartial.cs" />
     <Compile Include="Models\viewsByDate.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
@@ -232,6 +238,16 @@
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\ResetPass.cshtml" />
+    <Content Include="Areas\Admin\Views\Series\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Series\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Series\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Series\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Series\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

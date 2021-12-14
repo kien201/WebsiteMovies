@@ -81,3 +81,5 @@ GO
 INSERT [dbo].[Account] ([displayName], [userName], [pass], [email], [role]) VALUES (N'admin', N'admin', N'21232f297a57a5a743894a0e4a801fc3', N'admin@gmail.com', 0)
 INSERT [dbo].[Account] ([displayName], [userName], [pass], [email], [role]) VALUES (N'Kiên Trần', N'kien', N'5d2297b2f56654636090aaad75d0578f', N'kientr201@gmail.com', 1)
 INSERT [dbo].[Account] ([displayName], [userName], [pass], [email], [role]) VALUES (N'test', N'test', N'202cb962ac59075b964b07152d234b70', N'vip2k18@gmail.com', 0)
+
+
