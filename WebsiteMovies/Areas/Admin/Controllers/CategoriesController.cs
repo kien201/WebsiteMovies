@@ -10,6 +10,7 @@ using WebsiteMovies.Models;
 
 namespace WebsiteMovies.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private MovieEntities db = new MovieEntities();
@@ -17,7 +18,47 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // GET: Admin/Categories
         public ActionResult Index()
         {
-            return View(db.Category.ToList());
+            return View(db.Category.OrderBy(x => x.name).ToList());
+        }
+
+        public JsonResult GetList(int idMovie)
+        {
+            var listCategoryForMovie = db.CategoryForMovies.Where(x => x.movieId == idMovie).ToList();
+            var listCategory = new List<object>();
+            foreach (var item in db.Category.OrderBy(x => x.name).ToList())
+            {
+                bool isExist = false;
+                foreach (var categoryForMovie in listCategoryForMovie)
+                {
+                    if(item.id == categoryForMovie.categoryId)
+                    {
+                        isExist = true;
+                        break;
+                    }
+                }
+                listCategory.Add(new { item.id, item.name, isExist = isExist });
+            }
+            return Json(listCategory, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateCategoryForMovies(int idMovie, List<CategoryForMovies> newList)
+        {
+            var oldList = db.CategoryForMovies.Where(x => x.movieId == idMovie).ToList();
+            foreach (var item in oldList)
+            {
+                db.CategoryForMovies.Remove(item);
+            }
+            db.SaveChanges();
+            if (newList != null)
+            {
+                foreach(var item in newList)
+                {
+                    db.CategoryForMovies.Add(item);
+                }
+            }
+            db.SaveChanges();
+            return Json("Cập nhật thành công", JsonRequestBehavior.AllowGet);
         }
 
         // GET: Admin/Categories/Details/5

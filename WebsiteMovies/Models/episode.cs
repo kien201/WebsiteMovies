@@ -12,12 +12,12 @@ namespace WebsiteMovies.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class episode
+    public partial class Episode
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public episode()
+        public Episode()
         {
-            this.history = new HashSet<history>();
+            this.History = new HashSet<History>();
         }
     
         public int id { get; set; }
@@ -28,6 +28,6 @@ namespace WebsiteMovies.Models
     
         public virtual Movie Movie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<history> history { get; set; }
+        public virtual ICollection<History> History { get; set; }
     }
 }

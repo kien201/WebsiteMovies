@@ -1,0 +1,65 @@
+﻿@model WebsiteMovies.Models.Episode
+
+@{
+    ViewBag.Title = "Xóa tập phim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section styles{
+    <style>
+        .video-player {
+            width: 50%;
+        }
+    </style>
+}
+
+<h3>Bạn có chắc muốn xóa tập phim?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.episodeNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.episodeNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.episodeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.episodeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.video)
+        </dt>
+
+        <dd>
+            <video class="video-player" controls>
+                <source src="~/Assets/Videos/@Model.video" type="video/mp4" />
+            </video>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Trở về", "Index", new { idMovie = Model.movieId })
+        </div>
+    }
+</div>

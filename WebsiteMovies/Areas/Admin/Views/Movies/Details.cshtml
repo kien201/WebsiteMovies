@@ -1,0 +1,97 @@
+﻿@model WebsiteMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <h4>Chi tiết phim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anotherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anotherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            <img src="~/Assets/Images/MovieImages/@Model.image" alt="Lỗi load ảnh" width="30%" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.releaseYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.releaseYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Series.name)
+        </dt>
+
+        <dd>
+            @(Model.seriesId == null ? "??": Model.Series.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.part)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.part)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameInSeries)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameInSeries)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @(Model.status == 0 ? "Đang tiến hành" : "Hoàn thành")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

@@ -1,40 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MovieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="MovieEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MovieModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MovieModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
     <EntitySet Name="Account" EntityType="MovieModel.Account" />
     <EntitySet Name="Category" EntityType="MovieModel.Category" />
-    <EntitySet Name="CategoryDetails" EntityType="MovieModel.CategoryDetails" />
+    <EntitySet Name="CategoryForMovies" EntityType="MovieModel.CategoryForMovies" />
     <EntitySet Name="Comment" EntityType="MovieModel.Comment" />
-    <EntitySet Name="episode" EntityType="MovieModel.episode" />
-    <EntitySet Name="follow" EntityType="MovieModel.follow" />
-    <EntitySet Name="history" EntityType="MovieModel.history" />
+    <EntitySet Name="Episode" EntityType="MovieModel.Episode" />
+    <EntitySet Name="Follow" EntityType="MovieModel.Follow" />
+    <EntitySet Name="History" EntityType="MovieModel.History" />
     <EntitySet Name="Movie" EntityType="MovieModel.Movie" />
     <EntitySet Name="MovieRate" EntityType="MovieModel.MovieRate" />
     <EntitySet Name="Series" EntityType="MovieModel.Series" />
-    <EntitySet Name="viewsByDate" EntityType="MovieModel.viewsByDate" />
+    <EntitySet Name="ViewsByDate" EntityType="MovieModel.ViewsByDate" />
     <AssociationSet Name="FK__Comment__account__3B75D760" Association="MovieModel.FK__Comment__account__3B75D760">
       <End Role="Account" EntitySet="Account" />
       <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
-    <AssociationSet Name="FK__follow__accountI__403A8C7D" Association="MovieModel.FK__follow__accountI__403A8C7D">
+    <AssociationSet Name="FK__Follow__accountI__403A8C7D" Association="MovieModel.FK__Follow__accountI__403A8C7D">
       <End Role="Account" EntitySet="Account" />
-      <End Role="follow" EntitySet="follow" />
+      <End Role="Follow" EntitySet="Follow" />
     </AssociationSet>
-    <AssociationSet Name="FK__history__account__440B1D61" Association="MovieModel.FK__history__account__440B1D61">
+    <AssociationSet Name="FK__History__account__440B1D61" Association="MovieModel.FK__History__account__440B1D61">
       <End Role="Account" EntitySet="Account" />
-      <End Role="history" EntitySet="history" />
+      <End Role="History" EntitySet="History" />
     </AssociationSet>
     <AssociationSet Name="FK__MovieRate__accou__300424B4" Association="MovieModel.FK__MovieRate__accou__300424B4">
       <End Role="Account" EntitySet="Account" />
       <End Role="MovieRate" EntitySet="MovieRate" />
     </AssociationSet>
-    <AssociationSet Name="FK__CategoryD__categ__34C8D9D1" Association="MovieModel.FK__CategoryD__categ__34C8D9D1">
+    <AssociationSet Name="FK__CategoryF__categ__34C8D9D1" Association="MovieModel.FK__CategoryF__categ__34C8D9D1">
       <End Role="Category" EntitySet="Category" />
-      <End Role="CategoryDetails" EntitySet="CategoryDetails" />
+      <End Role="CategoryForMovies" EntitySet="CategoryForMovies" />
     </AssociationSet>
-    <AssociationSet Name="FK__CategoryD__movie__33D4B598" Association="MovieModel.FK__CategoryD__movie__33D4B598">
+    <AssociationSet Name="FK__CategoryF__movie__33D4B598" Association="MovieModel.FK__CategoryF__movie__33D4B598">
       <End Role="Movie" EntitySet="Movie" />
-      <End Role="CategoryDetails" EntitySet="CategoryDetails" />
+      <End Role="CategoryForMovies" EntitySet="CategoryForMovies" />
     </AssociationSet>
     <AssociationSet Name="FK__Comment__fatherC__3D5E1FD2" Association="MovieModel.FK__Comment__fatherC__3D5E1FD2">
       <End Role="Comment" EntitySet="Comment" />
@@ -44,17 +74,17 @@
       <End Role="Movie" EntitySet="Movie" />
       <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
-    <AssociationSet Name="FK__episode__movieId__37A5467C" Association="MovieModel.FK__episode__movieId__37A5467C">
+    <AssociationSet Name="FK__Episode__movieId__37A5467C" Association="MovieModel.FK__Episode__movieId__37A5467C">
       <End Role="Movie" EntitySet="Movie" />
-      <End Role="episode" EntitySet="episode" />
+      <End Role="Episode" EntitySet="Episode" />
     </AssociationSet>
-    <AssociationSet Name="FK__history__episode__44FF419A" Association="MovieModel.FK__history__episode__44FF419A">
-      <End Role="episode" EntitySet="episode" />
-      <End Role="history" EntitySet="history" />
+    <AssociationSet Name="FK__History__episode__44FF419A" Association="MovieModel.FK__History__episode__44FF419A">
+      <End Role="Episode" EntitySet="Episode" />
+      <End Role="History" EntitySet="History" />
     </AssociationSet>
-    <AssociationSet Name="FK__follow__movieId__412EB0B6" Association="MovieModel.FK__follow__movieId__412EB0B6">
+    <AssociationSet Name="FK__Follow__movieId__412EB0B6" Association="MovieModel.FK__Follow__movieId__412EB0B6">
       <End Role="Movie" EntitySet="Movie" />
-      <End Role="follow" EntitySet="follow" />
+      <End Role="Follow" EntitySet="Follow" />
     </AssociationSet>
     <AssociationSet Name="FK__Movie__seriesId__2A4B4B5E" Association="MovieModel.FK__Movie__seriesId__2A4B4B5E">
       <End Role="Series" EntitySet="Series" />
@@ -64,11 +94,22 @@
       <End Role="Movie" EntitySet="Movie" />
       <End Role="MovieRate" EntitySet="MovieRate" />
     </AssociationSet>
-    <AssociationSet Name="FK__viewsByDa__movie__2D27B809" Association="MovieModel.FK__viewsByDa__movie__2D27B809">
+    <AssociationSet Name="FK__ViewsByDa__movie__2D27B809" Association="MovieModel.FK__ViewsByDa__movie__2D27B809">
       <End Role="Movie" EntitySet="Movie" />
-      <End Role="viewsByDate" EntitySet="viewsByDate" />
+      <End Role="ViewsByDate" EntitySet="ViewsByDate" />
     </AssociationSet>
   </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
   <EntityType Name="Account">
     <Key>
       <PropertyRef Name="id" />
@@ -80,8 +121,8 @@
     <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="Int32" />
     <NavigationProperty Name="Comment" Relationship="MovieModel.FK__Comment__account__3B75D760" FromRole="Account" ToRole="Comment" />
-    <NavigationProperty Name="follow" Relationship="MovieModel.FK__follow__accountI__403A8C7D" FromRole="Account" ToRole="follow" />
-    <NavigationProperty Name="history" Relationship="MovieModel.FK__history__account__440B1D61" FromRole="Account" ToRole="history" />
+    <NavigationProperty Name="Follow" Relationship="MovieModel.FK__Follow__accountI__403A8C7D" FromRole="Account" ToRole="Follow" />
+    <NavigationProperty Name="History" Relationship="MovieModel.FK__History__account__440B1D61" FromRole="Account" ToRole="History" />
     <NavigationProperty Name="MovieRate" Relationship="MovieModel.FK__MovieRate__accou__300424B4" FromRole="Account" ToRole="MovieRate" />
   </EntityType>
   <EntityType Name="Category">
@@ -90,17 +131,17 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="CategoryDetails" Relationship="MovieModel.FK__CategoryD__categ__34C8D9D1" FromRole="Category" ToRole="CategoryDetails" />
+    <NavigationProperty Name="CategoryForMovies" Relationship="MovieModel.FK__CategoryF__categ__34C8D9D1" FromRole="Category" ToRole="CategoryForMovies" />
   </EntityType>
-  <EntityType Name="CategoryDetails">
+  <EntityType Name="CategoryForMovies">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="movieId" Type="Int32" />
     <Property Name="categoryId" Type="Int32" />
-    <NavigationProperty Name="Category" Relationship="MovieModel.FK__CategoryD__categ__34C8D9D1" FromRole="CategoryDetails" ToRole="Category" />
-    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__CategoryD__movie__33D4B598" FromRole="CategoryDetails" ToRole="Movie" />
+    <NavigationProperty Name="Category" Relationship="MovieModel.FK__CategoryF__categ__34C8D9D1" FromRole="CategoryForMovies" ToRole="Category" />
+    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__CategoryF__movie__33D4B598" FromRole="CategoryForMovies" ToRole="Movie" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -117,37 +158,37 @@
     <NavigationProperty Name="Comment2" Relationship="MovieModel.FK__Comment__fatherC__3D5E1FD2" FromRole="Comment1" ToRole="Comment" />
     <NavigationProperty Name="Movie" Relationship="MovieModel.FK__Comment__movieId__3A81B327" FromRole="Comment" ToRole="Movie" />
   </EntityType>
-  <EntityType Name="episode">
+  <EntityType Name="Episode">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="episodeNumber" Type="Int32" />
-    <Property Name="episodeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="episodeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="movieId" Type="Int32" />
     <Property Name="video" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__episode__movieId__37A5467C" FromRole="episode" ToRole="Movie" />
-    <NavigationProperty Name="history" Relationship="MovieModel.FK__history__episode__44FF419A" FromRole="episode" ToRole="history" />
+    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__Episode__movieId__37A5467C" FromRole="Episode" ToRole="Movie" />
+    <NavigationProperty Name="History" Relationship="MovieModel.FK__History__episode__44FF419A" FromRole="Episode" ToRole="History" />
   </EntityType>
-  <EntityType Name="follow">
+  <EntityType Name="Follow">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="accountId" Type="Int32" />
     <Property Name="movieId" Type="Int32" />
-    <NavigationProperty Name="Account" Relationship="MovieModel.FK__follow__accountI__403A8C7D" FromRole="follow" ToRole="Account" />
-    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__follow__movieId__412EB0B6" FromRole="follow" ToRole="Movie" />
+    <NavigationProperty Name="Account" Relationship="MovieModel.FK__Follow__accountI__403A8C7D" FromRole="Follow" ToRole="Account" />
+    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__Follow__movieId__412EB0B6" FromRole="Follow" ToRole="Movie" />
   </EntityType>
-  <EntityType Name="history">
+  <EntityType Name="History">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="accountId" Type="Int32" />
     <Property Name="episodeId" Type="Int32" />
-    <NavigationProperty Name="Account" Relationship="MovieModel.FK__history__account__440B1D61" FromRole="history" ToRole="Account" />
-    <NavigationProperty Name="episode" Relationship="MovieModel.FK__history__episode__44FF419A" FromRole="history" ToRole="episode" />
+    <NavigationProperty Name="Account" Relationship="MovieModel.FK__History__account__440B1D61" FromRole="History" ToRole="Account" />
+    <NavigationProperty Name="Episode" Relationship="MovieModel.FK__History__episode__44FF419A" FromRole="History" ToRole="Episode" />
   </EntityType>
   <EntityType Name="Movie">
     <Key>
@@ -162,14 +203,15 @@
     <Property Name="duration" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="seriesId" Type="Int32" />
     <Property Name="part" Type="Int32" />
+    <Property Name="nameInSeries" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="Int32" />
-    <NavigationProperty Name="CategoryDetails" Relationship="MovieModel.FK__CategoryD__movie__33D4B598" FromRole="Movie" ToRole="CategoryDetails" />
+    <NavigationProperty Name="CategoryForMovies" Relationship="MovieModel.FK__CategoryF__movie__33D4B598" FromRole="Movie" ToRole="CategoryForMovies" />
     <NavigationProperty Name="Comment" Relationship="MovieModel.FK__Comment__movieId__3A81B327" FromRole="Movie" ToRole="Comment" />
-    <NavigationProperty Name="episode" Relationship="MovieModel.FK__episode__movieId__37A5467C" FromRole="Movie" ToRole="episode" />
-    <NavigationProperty Name="follow" Relationship="MovieModel.FK__follow__movieId__412EB0B6" FromRole="Movie" ToRole="follow" />
+    <NavigationProperty Name="Episode" Relationship="MovieModel.FK__Episode__movieId__37A5467C" FromRole="Movie" ToRole="Episode" />
+    <NavigationProperty Name="Follow" Relationship="MovieModel.FK__Follow__movieId__412EB0B6" FromRole="Movie" ToRole="Follow" />
     <NavigationProperty Name="Series" Relationship="MovieModel.FK__Movie__seriesId__2A4B4B5E" FromRole="Movie" ToRole="Series" />
     <NavigationProperty Name="MovieRate" Relationship="MovieModel.FK__MovieRate__movie__30F848ED" FromRole="Movie" ToRole="MovieRate" />
-    <NavigationProperty Name="viewsByDate" Relationship="MovieModel.FK__viewsByDa__movie__2D27B809" FromRole="Movie" ToRole="viewsByDate" />
+    <NavigationProperty Name="ViewsByDate" Relationship="MovieModel.FK__ViewsByDa__movie__2D27B809" FromRole="Movie" ToRole="ViewsByDate" />
   </EntityType>
   <EntityType Name="MovieRate">
     <Key>
@@ -190,7 +232,7 @@
     <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Movie" Relationship="MovieModel.FK__Movie__seriesId__2A4B4B5E" FromRole="Series" ToRole="Movie" />
   </EntityType>
-  <EntityType Name="viewsByDate">
+  <EntityType Name="ViewsByDate">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -198,10 +240,12 @@
     <Property Name="movieId" Type="Int32" />
     <Property Name="day" Type="DateTime" Precision="0" />
     <Property Name="numView" Type="Int32" />
-    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__viewsByDa__movie__2D27B809" FromRole="viewsByDate" ToRole="Movie" />
+    <NavigationProperty Name="Movie" Relationship="MovieModel.FK__ViewsByDa__movie__2D27B809" FromRole="ViewsByDate" ToRole="Movie" />
   </EntityType>
   <Association Name="FK__Comment__account__3B75D760">
-    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1" />
+    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="MovieModel.Comment" Role="Comment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Account">
@@ -212,32 +256,38 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__follow__accountI__403A8C7D">
-    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1" />
-    <End Type="MovieModel.follow" Role="follow" Multiplicity="*" />
+  <Association Name="FK__Follow__accountI__403A8C7D">
+    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.Follow" Role="Follow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Account">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="follow">
+      <Dependent Role="Follow">
         <PropertyRef Name="accountId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__history__account__440B1D61">
-    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1" />
-    <End Type="MovieModel.history" Role="history" Multiplicity="*" />
+  <Association Name="FK__History__account__440B1D61">
+    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.History" Role="History" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Account">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="history">
+      <Dependent Role="History">
         <PropertyRef Name="accountId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__MovieRate__accou__300424B4">
-    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1" />
+    <End Type="MovieModel.Account" Role="Account" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="MovieModel.MovieRate" Role="MovieRate" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Account">
@@ -248,26 +298,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CategoryD__categ__34C8D9D1">
-    <End Type="MovieModel.Category" Role="Category" Multiplicity="0..1" />
-    <End Type="MovieModel.CategoryDetails" Role="CategoryDetails" Multiplicity="*" />
+  <Association Name="FK__CategoryF__categ__34C8D9D1">
+    <End Type="MovieModel.Category" Role="Category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.CategoryForMovies" Role="CategoryForMovies" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Category">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="CategoryDetails">
+      <Dependent Role="CategoryForMovies">
         <PropertyRef Name="categoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CategoryD__movie__33D4B598">
-    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1" />
-    <End Type="MovieModel.CategoryDetails" Role="CategoryDetails" Multiplicity="*" />
+  <Association Name="FK__CategoryF__movie__33D4B598">
+    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.CategoryForMovies" Role="CategoryForMovies" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Movie">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="CategoryDetails">
+      <Dependent Role="CategoryForMovies">
         <PropertyRef Name="movieId" />
       </Dependent>
     </ReferentialConstraint>
@@ -285,7 +339,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Comment__movieId__3A81B327">
-    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1" />
+    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="MovieModel.Comment" Role="Comment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Movie">
@@ -296,38 +352,44 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__episode__movieId__37A5467C">
-    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1" />
-    <End Type="MovieModel.episode" Role="episode" Multiplicity="*" />
+  <Association Name="FK__Episode__movieId__37A5467C">
+    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.Episode" Role="Episode" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Movie">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="episode">
+      <Dependent Role="Episode">
         <PropertyRef Name="movieId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__history__episode__44FF419A">
-    <End Type="MovieModel.episode" Role="episode" Multiplicity="0..1" />
-    <End Type="MovieModel.history" Role="history" Multiplicity="*" />
+  <Association Name="FK__History__episode__44FF419A">
+    <End Type="MovieModel.Episode" Role="Episode" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.History" Role="History" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="episode">
+      <Principal Role="Episode">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="history">
+      <Dependent Role="History">
         <PropertyRef Name="episodeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__follow__movieId__412EB0B6">
-    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1" />
-    <End Type="MovieModel.follow" Role="follow" Multiplicity="*" />
+  <Association Name="FK__Follow__movieId__412EB0B6">
+    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.Follow" Role="Follow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Movie">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="follow">
+      <Dependent Role="Follow">
         <PropertyRef Name="movieId" />
       </Dependent>
     </ReferentialConstraint>
@@ -345,7 +407,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__MovieRate__movie__30F848ED">
-    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1" />
+    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="MovieModel.MovieRate" Role="MovieRate" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Movie">
@@ -356,14 +420,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__viewsByDa__movie__2D27B809">
-    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1" />
-    <End Type="MovieModel.viewsByDate" Role="viewsByDate" Multiplicity="*" />
+  <Association Name="FK__ViewsByDa__movie__2D27B809">
+    <End Type="MovieModel.Movie" Role="Movie" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MovieModel.ViewsByDate" Role="ViewsByDate" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Movie">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="viewsByDate">
+      <Dependent Role="ViewsByDate">
         <PropertyRef Name="movieId" />
       </Dependent>
     </ReferentialConstraint>

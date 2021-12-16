@@ -21,9 +21,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CategoryDetails">
-      <EntityTypeMapping TypeName="MovieModel.CategoryDetails">
-        <MappingFragment StoreEntitySet="CategoryDetails">
+    <EntitySetMapping Name="CategoryForMovies">
+      <EntityTypeMapping TypeName="MovieModel.CategoryForMovies">
+        <MappingFragment StoreEntitySet="CategoryForMovies">
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
           <ScalarProperty Name="movieId" ColumnName="movieId" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -42,9 +42,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="episode">
-      <EntityTypeMapping TypeName="MovieModel.episode">
-        <MappingFragment StoreEntitySet="episode">
+    <EntitySetMapping Name="Episode">
+      <EntityTypeMapping TypeName="MovieModel.Episode">
+        <MappingFragment StoreEntitySet="Episode">
           <ScalarProperty Name="video" ColumnName="video" />
           <ScalarProperty Name="movieId" ColumnName="movieId" />
           <ScalarProperty Name="episodeName" ColumnName="episodeName" />
@@ -53,18 +53,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="follow">
-      <EntityTypeMapping TypeName="MovieModel.follow">
-        <MappingFragment StoreEntitySet="follow">
+    <EntitySetMapping Name="Follow">
+      <EntityTypeMapping TypeName="MovieModel.Follow">
+        <MappingFragment StoreEntitySet="Follow">
           <ScalarProperty Name="movieId" ColumnName="movieId" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="history">
-      <EntityTypeMapping TypeName="MovieModel.history">
-        <MappingFragment StoreEntitySet="history">
+    <EntitySetMapping Name="History">
+      <EntityTypeMapping TypeName="MovieModel.History">
+        <MappingFragment StoreEntitySet="History">
           <ScalarProperty Name="episodeId" ColumnName="episodeId" />
           <ScalarProperty Name="accountId" ColumnName="accountId" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -75,6 +75,7 @@
       <EntityTypeMapping TypeName="MovieModel.Movie">
         <MappingFragment StoreEntitySet="Movie">
           <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="nameInSeries" ColumnName="nameInSeries" />
           <ScalarProperty Name="part" ColumnName="part" />
           <ScalarProperty Name="seriesId" ColumnName="seriesId" />
           <ScalarProperty Name="duration" ColumnName="duration" />
@@ -105,9 +106,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="viewsByDate">
-      <EntityTypeMapping TypeName="MovieModel.viewsByDate">
-        <MappingFragment StoreEntitySet="viewsByDate">
+    <EntitySetMapping Name="ViewsByDate">
+      <EntityTypeMapping TypeName="MovieModel.ViewsByDate">
+        <MappingFragment StoreEntitySet="ViewsByDate">
           <ScalarProperty Name="numView" ColumnName="numView" />
           <ScalarProperty Name="day" ColumnName="day" />
           <ScalarProperty Name="movieId" ColumnName="movieId" />

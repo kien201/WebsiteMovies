@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebsiteMovies.Models.Episode>
+
+@{
+    ViewBag.Title = "Quản lý tập phim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="@Url.Action("Details", "Movies", new { id = ViewBag.idMovie })">Phim @ViewBag.movieName</a></li>
+    <li class="breadcrumb-item active">Quản lý tập phim</li>
+</ol>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create", new { ViewBag.idMovie })">
+        <i class="fas fa-plus"></i> Thêm tập phim
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Movie.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.episodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.episodeName)
+        </th>
+        <th>Chức năng</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Movie.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.episodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.episodeName)
+        </td>
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-details" href="@Url.Action("Details", new { id = item.id })">
+                    <i class="fas fa-eye"></i> Chi tiết
+                </a>
+                <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.id, ViewBag.idMovie })">
+                    <i class="fas fa-pen"></i> Sửa
+                </a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.id })">
+                    <i class="fas fa-trash"></i> Xóa
+                </a>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

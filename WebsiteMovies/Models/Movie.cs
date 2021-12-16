@@ -17,12 +17,12 @@ namespace WebsiteMovies.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Movie()
         {
-            this.CategoryDetails = new HashSet<CategoryDetails>();
+            this.CategoryForMovies = new HashSet<CategoryForMovies>();
             this.Comment = new HashSet<Comment>();
-            this.episode = new HashSet<episode>();
-            this.follow = new HashSet<follow>();
+            this.Episode = new HashSet<Episode>();
+            this.Follow = new HashSet<Follow>();
             this.MovieRate = new HashSet<MovieRate>();
-            this.viewsByDate = new HashSet<viewsByDate>();
+            this.ViewsByDate = new HashSet<ViewsByDate>();
         }
     
         public int id { get; set; }
@@ -34,20 +34,21 @@ namespace WebsiteMovies.Models
         public string duration { get; set; }
         public Nullable<int> seriesId { get; set; }
         public Nullable<int> part { get; set; }
+        public string nameInSeries { get; set; }
         public Nullable<int> status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CategoryDetails> CategoryDetails { get; set; }
+        public virtual ICollection<CategoryForMovies> CategoryForMovies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<episode> episode { get; set; }
+        public virtual ICollection<Episode> Episode { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<follow> follow { get; set; }
+        public virtual ICollection<Follow> Follow { get; set; }
         public virtual Series Series { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieRate> MovieRate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<viewsByDate> viewsByDate { get; set; }
+        public virtual ICollection<ViewsByDate> ViewsByDate { get; set; }
     }
 }

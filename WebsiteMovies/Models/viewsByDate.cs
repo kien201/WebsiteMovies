@@ -12,7 +12,7 @@ namespace WebsiteMovies.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class viewsByDate
+    public partial class ViewsByDate
     {
         public int id { get; set; }
         public Nullable<int> movieId { get; set; }

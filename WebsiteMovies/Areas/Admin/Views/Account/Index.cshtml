@@ -10,7 +10,9 @@
 </ol>
 
 <p>
-    @Html.ActionLink("Thêm tài khoản", "Create", null, new { @class = "btn btn-primary" })
+    <a class="btn btn-primary" href="@Url.Action("Create")">
+        <i class="fas fa-plus"></i> Thêm tài khoản
+    </a>
 </p>
 <table class="table">
     <tr>
@@ -44,9 +46,17 @@
             @(item.role == 0 ? "Admin" : "Thành viên")
         </td>
         <td>
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
-            @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+            <div class="btn-group">
+                <a class="btn btn-details" href="@Url.Action("Details", new { id = item.id })">
+                    <i class="fas fa-eye"></i> Chi tiết
+                </a>
+                <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.id })">
+                    <i class="fas fa-pen"></i> Sửa
+                </a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.id })">
+                    <i class="fas fa-trash"></i> Xóa
+                </a>
+            </div>
         </td>
     </tr>
 }

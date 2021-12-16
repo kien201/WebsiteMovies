@@ -1,0 +1,178 @@
+﻿@model WebsiteMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-9">
+        @using (Html.BeginForm("Edit", "Movies", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Sửa phim</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.anotherName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.anotherName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.anotherName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                    @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                    @Html.Hidden("oldImageName", Model.image)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.releaseYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.releaseYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.releaseYear, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @rows = "5" } })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.duration, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.duration, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.seriesId, "seriesId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.seriesId, null, "---Chọn series---", htmlAttributes: new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.seriesId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.part, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.part, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.part, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.nameInSeries, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.nameInSeries, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nameInSeries, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.status, null, new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Cập nhật" class="btn btn-primary my-2" />
+                </div>
+            </div>
+        </div>
+        }
+
+        <div>
+            @Html.ActionLink("Quản lý tập phim", "Index", "Episodes", new { idMovie = Model.id }, null) |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    </div>
+    <div class="col-md-3">
+        <h4>Thể loại phim</h4>
+        <hr />
+        <div id="categoryList"></div>
+        <div>
+            <button class="btn btn-primary mt-2" onclick="UpdateCategoryForMovies()">Cập nhật thể loại</button>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var categoryListObj = null;
+        function LoadCategories() {
+            $.ajax({
+                url: '@Url.Action("GetList", "Categories", new { idMovie = Model.id })',
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: (result) => {
+                    categoryListObj = result;
+                    var html = '';
+                    $.each(result, (key, item) => {
+                        html += '<div class="form-check mb-2">';
+                        if (item.isExist) html += '<input class="form-check-input" id = "category' + item.id + '" type = "checkbox" checked />';
+                        else html += '<input class="form-check-input" id = "category' + item.id + '" type = "checkbox" />';
+                        html += '<label class="form-check-label" for="category' + item.id + '">' + item.name + '</label>';
+                        html += '</div >';
+                    });
+                    $('#categoryList').html(html);
+                },
+                error: (err) => {
+                    alert("Lỗi load danh sách thể loại: " + err.responseText);
+                }
+            })
+        }
+        LoadCategories()
+
+        //Update category for movie
+        function UpdateCategoryForMovies() {
+            let categoryForMoviesObj = []
+            $.each(categoryListObj, (key, item) => {
+                if ($('#category' + item.id).is(":checked")) {
+                    categoryForMoviesObj.push({ categoryId: item.id, movieId: @Model.id })
+                }
+            });
+            $.ajax({
+                url: '@Url.Action("UpdateCategoryForMovies", "Categories", new { idMovie = Model.id })',
+                type: "POST",
+                data: JSON.stringify(categoryForMoviesObj),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: (result) => {
+                    alert(result);
+                    LoadCategories();
+                },
+                error: (err) => {
+                    alert("Lỗi cập nhật thể loại cho phim: " + err.responseText);
+                }
+            })
+        }
+    </script>
+}

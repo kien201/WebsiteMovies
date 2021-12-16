@@ -12,13 +12,13 @@ namespace WebsiteMovies.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class history
+    public partial class History
     {
         public int id { get; set; }
         public Nullable<int> accountId { get; set; }
         public Nullable<int> episodeId { get; set; }
     
         public virtual Account Account { get; set; }
-        public virtual episode episode { get; set; }
+        public virtual Episode Episode { get; set; }
     }
 }

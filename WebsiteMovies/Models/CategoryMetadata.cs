@@ -8,7 +8,7 @@ namespace WebsiteMovies.Models
 {
     public class CategoryMetadata
     {
-        [Display(Name = "Tên thể loại hiển thị")]
+        [Display(Name = "Tên thể loại")]
         [Required(ErrorMessage = "Không để trống!")]
         public string name { get; set; }
     }

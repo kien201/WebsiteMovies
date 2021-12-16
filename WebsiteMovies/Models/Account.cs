@@ -18,8 +18,8 @@ namespace WebsiteMovies.Models
         public Account()
         {
             this.Comment = new HashSet<Comment>();
-            this.follow = new HashSet<follow>();
-            this.history = new HashSet<history>();
+            this.Follow = new HashSet<Follow>();
+            this.History = new HashSet<History>();
             this.MovieRate = new HashSet<MovieRate>();
         }
     
@@ -33,9 +33,9 @@ namespace WebsiteMovies.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<follow> follow { get; set; }
+        public virtual ICollection<Follow> Follow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<history> history { get; set; }
+        public virtual ICollection<History> History { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieRate> MovieRate { get; set; }
     }

@@ -8,7 +8,7 @@ namespace WebsiteMovies.Models
 {
     public class SeriesMetadata
     {
-        [Display(Name = "Tên serie")]
+        [Display(Name = "Tên series")]
         [Required(ErrorMessage = "Không để trống!")]
         public string name { get; set; }
     }

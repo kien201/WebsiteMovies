@@ -10,6 +10,7 @@ using WebsiteMovies.Models;
 
 namespace WebsiteMovies.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SeriesController : Controller
     {
         private MovieEntities db = new MovieEntities();
@@ -17,7 +18,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // GET: Admin/Series
         public ActionResult Index()
         {
-            return View(db.Series.ToList());
+            return View(db.Series.OrderBy(x => x.name).ToList());
         }
 
         // GET: Admin/Series/Details/5

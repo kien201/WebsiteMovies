@@ -17,13 +17,13 @@ namespace WebsiteMovies.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.CategoryDetails = new HashSet<CategoryDetails>();
+            this.CategoryForMovies = new HashSet<CategoryForMovies>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CategoryDetails> CategoryDetails { get; set; }
+        public virtual ICollection<CategoryForMovies> CategoryForMovies { get; set; }
     }
 }

@@ -28,11 +28,21 @@ namespace WebsiteMovies.Areas.Admin.Controllers
                 string md5pass = Code.Md5hash.md5(account.pass);
                 var user = db.Account.FirstOrDefault(x => x.userName == account.userName && x.pass == md5pass);
                 if (user == null) ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không chính xác");
+                else if (user.role == 1) ModelState.AddModelError("", "Tài khoản không đủ quyền");
                 else
                 {
-                    Session["userName"] = user.userName;
-                    bool isRememberPass = inputRememberPassword == "on";
-                    FormsAuthentication.SetAuthCookie(user.userName, isRememberPass);
+                    if(inputRememberPassword == "on")
+                    {
+                        FormsAuthentication.SetAuthCookie(user.userName, true);
+                        Response.Cookies.Add(new HttpCookie("curUserName", user.userName) { Expires = DateTime.Now.AddMonths(4) });
+                        Response.Cookies.Add(new HttpCookie("curDisplayName", user.displayName) { Expires = DateTime.Now.AddMonths(4) });
+                    }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(user.userName, false);
+                        Response.Cookies.Add(new HttpCookie("curUserName", user.userName));
+                        Response.Cookies.Add(new HttpCookie("curDisplayName", user.displayName));
+                    }
                     if (ReturnUrl != null) return Redirect(ReturnUrl);
                     return RedirectToAction("Index", "Home");
                 }
@@ -43,6 +53,8 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Response.Cookies.Remove("curUserName");
+            Response.Cookies.Remove("curDisplayName");
             return RedirectToAction("Index");
         }
     }

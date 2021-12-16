@@ -17,7 +17,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // GET: Admin/Account
         public ActionResult Index()
         {
-            return View(db.Account.ToList());
+            return View(db.Account.OrderBy(x => x.displayName).ToList());
         }
 
         // GET: Admin/Account/Details/5
@@ -35,18 +35,18 @@ namespace WebsiteMovies.Areas.Admin.Controllers
             return View(account);
         }
 
-        private List<SelectListItem> GetRoleList(int roleSelected)
+        private List<SelectListItem> GetRoleList()
         {
             var roleList = new List<SelectListItem>();
-            roleList.Add(new SelectListItem() { Value = "0", Text = "Admin", Selected = roleSelected == 0 });
-            roleList.Add(new SelectListItem() { Value = "1", Text = "Thành viên", Selected = roleSelected == 1 });
+            roleList.Add(new SelectListItem() { Value = "0", Text = "Admin" });
+            roleList.Add(new SelectListItem() { Value = "1", Text = "Thành viên" });
             return roleList;
         }
 
         // GET: Admin/Account/Create
         public ActionResult Create()
         {
-            ViewBag.roleList = GetRoleList(1);
+            ViewBag.roleList = new SelectList(GetRoleList(), "Value", "Text", 1);
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.roleList = GetRoleList((int)account.role);
+            ViewBag.roleList = new SelectList(GetRoleList(), "Value", "Text", account.role);
             return View(account);
         }
 
@@ -81,7 +81,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.roleList = GetRoleList((int)account.role);
+            ViewBag.roleList = new SelectList(GetRoleList(), "Value", "Text", account.role);
             return View(account);
         }
 
@@ -98,7 +98,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.roleList = GetRoleList((int)account.role);
+            ViewBag.roleList = new SelectList(GetRoleList(), "Value", "Text", account.role);
             return View(account);
         }
 

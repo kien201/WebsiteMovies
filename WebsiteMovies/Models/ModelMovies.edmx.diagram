@@ -5,31 +5,31 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b434d9b011e14749943fc6305b14267e" Name="Diagram1">
-        <EntityTypeShape EntityType="MovieModel.Account" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="MovieModel.Category" Width="1.5" PointX="3" PointY="13.5" />
-        <EntityTypeShape EntityType="MovieModel.CategoryDetails" Width="1.5" PointX="5.25" PointY="12.25" />
+        <EntityTypeShape EntityType="MovieModel.Account" Width="1.5" PointX="6" PointY="1.75" />
+        <EntityTypeShape EntityType="MovieModel.Category" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="MovieModel.CategoryForMovies" Width="1.5" PointX="5.25" PointY="6.25" />
         <EntityTypeShape EntityType="MovieModel.Comment" Width="1.5" PointX="8.25" PointY="8.75" />
-        <EntityTypeShape EntityType="MovieModel.episode" Width="1.5" PointX="5.25" PointY="19.75" />
-        <EntityTypeShape EntityType="MovieModel.follow" Width="1.5" PointX="5.25" PointY="9.25" />
-        <EntityTypeShape EntityType="MovieModel.history" Width="1.5" PointX="7.5" PointY="20" />
-        <EntityTypeShape EntityType="MovieModel.Movie" Width="1.5" PointX="3" PointY="8.125" />
-        <EntityTypeShape EntityType="MovieModel.MovieRate" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="MovieModel.Episode" Width="1.5" PointX="5.25" PointY="19.75" />
+        <EntityTypeShape EntityType="MovieModel.Follow" Width="1.5" PointX="5.25" PointY="9.25" />
+        <EntityTypeShape EntityType="MovieModel.History" Width="1.5" PointX="7.5" PointY="20" />
+        <EntityTypeShape EntityType="MovieModel.Movie" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="MovieModel.MovieRate" Width="1.5" PointX="5.25" PointY="12.125" />
         <EntityTypeShape EntityType="MovieModel.Series" Width="1.5" PointX="0.75" PointY="9.5" />
-        <EntityTypeShape EntityType="MovieModel.viewsByDate" Width="1.5" PointX="5.25" PointY="22.875" />
+        <EntityTypeShape EntityType="MovieModel.ViewsByDate" Width="1.5" PointX="5.25" PointY="22.875" />
         <AssociationConnector Association="MovieModel.FK__Comment__account__3B75D760" />
-        <AssociationConnector Association="MovieModel.FK__follow__accountI__403A8C7D" />
-        <AssociationConnector Association="MovieModel.FK__history__account__440B1D61" />
+        <AssociationConnector Association="MovieModel.FK__Follow__accountI__403A8C7D" />
+        <AssociationConnector Association="MovieModel.FK__History__account__440B1D61" />
         <AssociationConnector Association="MovieModel.FK__MovieRate__accou__300424B4" />
-        <AssociationConnector Association="MovieModel.FK__CategoryD__categ__34C8D9D1" />
-        <AssociationConnector Association="MovieModel.FK__CategoryD__movie__33D4B598" />
+        <AssociationConnector Association="MovieModel.FK__CategoryF__categ__34C8D9D1" />
+        <AssociationConnector Association="MovieModel.FK__CategoryF__movie__33D4B598" />
         <AssociationConnector Association="MovieModel.FK__Comment__fatherC__3D5E1FD2" />
         <AssociationConnector Association="MovieModel.FK__Comment__movieId__3A81B327" />
-        <AssociationConnector Association="MovieModel.FK__episode__movieId__37A5467C" />
-        <AssociationConnector Association="MovieModel.FK__history__episode__44FF419A" />
-        <AssociationConnector Association="MovieModel.FK__follow__movieId__412EB0B6" />
+        <AssociationConnector Association="MovieModel.FK__Episode__movieId__37A5467C" />
+        <AssociationConnector Association="MovieModel.FK__History__episode__44FF419A" />
+        <AssociationConnector Association="MovieModel.FK__Follow__movieId__412EB0B6" />
         <AssociationConnector Association="MovieModel.FK__Movie__seriesId__2A4B4B5E" />
         <AssociationConnector Association="MovieModel.FK__MovieRate__movie__30F848ED" />
-        <AssociationConnector Association="MovieModel.FK__viewsByDa__movie__2D27B809" />
+        <AssociationConnector Association="MovieModel.FK__ViewsByDa__movie__2D27B809" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -132,8 +132,10 @@
     <Compile Include="Areas\Admin\Code\Md5hash.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EpisodesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SeriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -145,7 +147,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryDetails.cs">
+    <Compile Include="Models\CategoryForMovies.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryMetadata.cs" />
@@ -154,17 +156,19 @@
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomRoleProvider.cs" />
-    <Compile Include="Models\episode.cs">
-      <DependentUpon>ModelMovies.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\follow.cs">
-      <DependentUpon>ModelMovies.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\history.cs">
-      <DependentUpon>ModelMovies.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountPartial.cs" />
     <Compile Include="Models\AccountMetadata.cs" />
+    <Compile Include="Models\Episode.cs">
+      <DependentUpon>ModelMovies.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EpisodeMetadata.cs" />
+    <Compile Include="Models\EpisodePartial.cs" />
+    <Compile Include="Models\Follow.cs">
+      <DependentUpon>ModelMovies.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\History.cs">
+      <DependentUpon>ModelMovies.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelMovies.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,6 +187,8 @@
     <Compile Include="Models\Movie.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MovieMetadata.cs" />
+    <Compile Include="Models\MoviePartial.cs" />
     <Compile Include="Models\MovieRate.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
@@ -191,16 +197,23 @@
     </Compile>
     <Compile Include="Models\SeriesMetadata.cs" />
     <Compile Include="Models\SeriesPartial.cs" />
-    <Compile Include="Models\viewsByDate.cs">
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModelMovies.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModelMovies.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewsByDate.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Admin\css\styles.css" />
-    <Content Include="Assets\Admin\js\bootstrap.bundle.min.js" />
-    <Content Include="Assets\Admin\js\fontawesome-5-15-3-all.min.js" />
-    <Content Include="Assets\Admin\js\scripts.js" />
+    <Content Include="Assets\css\styles.css" />
+    <Content Include="Assets\Images\MovieImages\default-movie-image.png" />
+    <Content Include="Assets\js\bootstrap.bundle.min.js" />
+    <Content Include="Assets\js\fontawesome-5-15-3-all.min.js" />
+    <Content Include="Assets\js\scripts.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -238,6 +251,11 @@
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\ResetPass.cshtml" />
+    <Content Include="Areas\Admin\Views\Movies\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Movies\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Movies\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Movies\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Movies\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Series\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Series\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Series\Details.cshtml" />
@@ -248,6 +266,11 @@
     <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Episodes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Episodes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Episodes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Episodes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Episodes\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -276,7 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\Customer\" />
+    <Folder Include="Assets\Videos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
