@@ -11,6 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="displayName" Type="nvarchar" MaxLength="100" />
+          <Property Name="image" Type="varchar" MaxLength="255" />
           <Property Name="userName" Type="varchar" MaxLength="100" />
           <Property Name="pass" Type="varchar" MaxLength="1000" />
           <Property Name="email" Type="varchar" MaxLength="255" />
@@ -498,6 +499,7 @@
           <NavigationProperty Name="Follow" Relationship="MovieModel.FK__Follow__accountI__403A8C7D" FromRole="Account" ToRole="Follow" />
           <NavigationProperty Name="History" Relationship="MovieModel.FK__History__account__440B1D61" FromRole="Account" ToRole="History" />
           <NavigationProperty Name="MovieRate" Relationship="MovieModel.FK__MovieRate__accou__300424B4" FromRole="Account" ToRole="MovieRate" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -817,6 +819,7 @@
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="MovieModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="pass" ColumnName="pass" />

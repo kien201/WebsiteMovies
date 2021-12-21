@@ -18,6 +18,21 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @if (Model.image != null)
+            {
+                <img src="~/Assets/Images/AccountImages/@Model.image" alt="Lỗi load ảnh" width="10%" />
+            }
+            else
+            {
+                <img src="~/Assets/Images/AccountImages/default-account-image.jpg" alt="Lỗi load ảnh" width="10%" />
+            }
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.userName)
         </dt>
 

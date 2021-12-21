@@ -5,6 +5,7 @@ GO
 CREATE TABLE Account(
 	id INT PRIMARY KEY IDENTITY,
 	displayName NVARCHAR(100), --tên hiển thị
+	image VARCHAR(255),
 	userName VARCHAR(100),
 	pass VARCHAR(1000),
 	email VARCHAR(255),

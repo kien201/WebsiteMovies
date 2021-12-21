@@ -40,7 +40,11 @@ namespace WebsiteMovies.Models
         {
             var account = db.Account.SingleOrDefault(x => x.userName == username);
             string role = account.role == 0 ? "Admin" : "Member";
-            if (account != null) return new string[] { role };
+            if (account != null)
+            {
+                HttpContext.Current.Session.Add("curAccount", account);
+                return new string[] { role };
+            }
             else return new string[] { };
         }
 

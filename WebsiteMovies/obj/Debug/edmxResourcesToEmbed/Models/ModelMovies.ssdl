@@ -6,6 +6,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="displayName" Type="nvarchar" MaxLength="100" />
+    <Property Name="image" Type="varchar" MaxLength="255" />
     <Property Name="userName" Type="varchar" MaxLength="100" />
     <Property Name="pass" Type="varchar" MaxLength="1000" />
     <Property Name="email" Type="varchar" MaxLength="255" />

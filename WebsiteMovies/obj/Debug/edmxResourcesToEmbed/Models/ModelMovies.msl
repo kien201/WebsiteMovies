@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Account">
       <EntityTypeMapping TypeName="MovieModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="pass" ColumnName="pass" />

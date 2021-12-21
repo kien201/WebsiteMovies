@@ -59,6 +59,13 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         {
             int count = db.Account.Where(x => x.userName == account.userName).Count();
             if (count > 0) ModelState.AddModelError("", "Tài khoản đã có người đăng ký");
+            var f = Request.Files["image"];
+            if (f != null && f.ContentLength > 0)
+            {
+                var path = Server.MapPath("~/Assets/Images/AccountImages/" + f.FileName);
+                f.SaveAs(path);
+                account.image = f.FileName;
+            }
             if (ModelState.IsValid)
             {
                 db.Account.Add(account);
@@ -90,8 +97,16 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,displayName,userName,pass,email,role")] Account account)
+        public ActionResult Edit([Bind(Include = "id,displayName,userName,pass,email,role")] Account account, string oldImageName)
         {
+            var f = Request.Files["image"];
+            if (f != null && f.ContentLength > 0)
+            {
+                var path = Server.MapPath("~/Assets/Images/AccountImages/" + f.FileName);
+                f.SaveAs(path);
+                account.image = f.FileName;
+            }
+            else account.image = oldImageName;
             if (ModelState.IsValid)
             {
                 db.Entry(account).State = EntityState.Modified;

@@ -11,6 +11,9 @@ namespace WebsiteMovies.Models
         [Display(Name = "Tên hiển thị")]
         public string displayName { get; set; }
 
+        [Display(Name = "Ảnh")]
+        public string image { get; set; }
+
         [Display(Name = "Tài khoản")]
         [Required(ErrorMessage = "Tài khoản là bắt buộc!")]
         public string userName { get; set; }

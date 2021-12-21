@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Edit", "Episodes", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Sửa tập phim</h4>
         <hr />
@@ -59,3 +59,8 @@
 <div>
     @Html.ActionLink("Trở về", "Index", new { idMovie = Model.movieId })
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
