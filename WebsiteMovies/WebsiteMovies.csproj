@@ -221,6 +221,8 @@
     <Content Include="Assets\css\MovieEpisode.css" />
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\Images\AccountImages\default-account-image.jpg" />
+    <Content Include="Assets\Images\AccountImages\naruto-image.jpg" />
+    <Content Include="Assets\Images\AccountImages\uzumaki-image.png" />
     <Content Include="Assets\Images\MovieImages\kimetsu-no-yaiba-phan-1.jpg" />
     <Content Include="Assets\Images\MovieImages\Kimetsu-no-Yaiba.jpg" />
     <Content Include="Assets\Images\Logo.png" />

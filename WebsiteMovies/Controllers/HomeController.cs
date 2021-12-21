@@ -58,7 +58,7 @@ namespace WebsiteMovies.Controllers
         public ActionResult _load_comment(int id)
         {
             int _id = id;
-            var _load_comment = db.Comment.Select(x => new { id = x.id, movieId = x.movieId, movieName = x.Movie.name, displayName = x.Account.displayName, content = x.content, commentDate = x.commentDate, fatherComment = x.fatherComment }).Where(x => x.movieId == _id).ToList();
+            var _load_comment = db.Comment.Select(x => new { id = x.id, movieId = x.movieId, movieName = x.Movie.name, displayName = x.Account.displayName,imageAccount=x.Account.image, content = x.content, commentDate = x.commentDate, fatherComment = x.fatherComment }).Where(x => x.movieId == _id).ToList();
 
             return Json(_load_comment, JsonRequestBehavior.AllowGet);
 
