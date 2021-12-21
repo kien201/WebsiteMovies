@@ -1,0 +1,110 @@
+﻿@model  WebsiteMovies.Models.CustomModel.CustomModel
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="~/Assets/css/MovieDetail.css" />
+}
+
+<!-- details -->
+<section class="">
+    <div class="heading_movie">
+        <h3>@Model.movie.name</h3>
+    </div>
+    <div class="movie_introduction">
+        <div class="movie_introduction_left">
+            <img src="~/Assets/Images/MovieImages/@Model.movie.image" class="movie_img" />
+
+        </div>
+        <div class="movie_introduction_right">
+            <div class="other_name movie_list">
+                <div class="movie_list_name">Tên khác</div>
+                <div class="movie_list_intro">@Model.movie.anotherName</div>
+            </div>
+            <div class="list_cate movie_list">
+                <div class="movie_list_name">Thể loại</div>
+                <div class="movie_list_intro movie_list_intro_list_cate">
+                    @foreach (var item in Model.list_categoryformovies)
+                    {
+                        <a href="">@item.Category.name</a>
+                    }
+                </div>
+
+            </div>
+            <div class="status movie_list">
+                <div class="movie_list_name">Trạng thái</div>
+                <div class="movie_list_intro">@Model.movie.status</div>
+            </div>
+            <div class="score movie_list">
+                <div class="movie_list_name">Điểm</div>
+                <div class="movie_list_intro">9.8 || 4412 đánh giá</div>
+            </div>
+            <div class="update_time movie_list">
+                <div class="movie_list_name">Phát hành</div>
+                <div class="movie_list_intro">@Model.movie.releaseYear</div>
+            </div>
+            <div class="duration movie_list">
+                <div class="movie_list_name">Thời lượng</div>
+                <div class="movie_list_intro">@Model.movie.duration</div>
+            </div>
+        </div>
+    </div>
+    <div class="follow-and-play">
+        <div class="follow-and-play_frame">
+            <div class="play_movie" title="Xem phim">
+                <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=1"><i class="far fa-play-circle"></i></a>
+            </div>
+            <div class="follow_movie" title="Theo dõi bộ phim này">
+                <a href=""><i class="far fa-plus-square"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="bind_movie">
+        <h3 class="heading_bind">Phim liên kết</h3>
+        <div class="list_serie_bind">
+            <a href="" class="active">Phần 1</a>
+            <a href="" class="">Phần 2</a>
+            <a href="" class="">Phần 3</a>
+            <a href="" class="">Phần 4</a>
+        </div>
+    </div>
+    <div class="body_episode">
+        <div class="list_episode">
+            <div class="heading_list_episode">
+                <h3>Danh sách tập</h3>
+            </div>
+            <div class="list_episode_item">
+                @foreach (var item in Model.list_episode)
+                {
+                    <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                }
+
+
+            </div>
+        </div>
+        <div class="movie_content">
+            <div class="heading_movie_content">
+                <h3>Nội dung</h3>
+            </div>
+            <div class="content_description">
+                <p>
+                    @Model.movie.description
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="comment" style="margin-top:10px;">
+        <div class="heading_comment">
+            <i class="far fa-comment-alt heading_comment"></i>
+            <h3 class="heading_comment comment_count"></h3>
+        </div>
+        <div class="comment_login">
+            <a href="">Đăng nhập để bình luận</a>
+        </div>
+
+    </div>
+
+    @Html.Partial("_load_comment")
+
+
+</section>

@@ -1,0 +1,70 @@
+﻿@model  WebsiteMovies.Models.CustomModel.CustomModel
+
+@{
+    ViewBag.Title = "Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="~/Assets/css/MovieEpisode.css" />
+}
+
+<section class="">
+    <div class="">
+        <div class="heading_movie_info_episode">
+            <div clas="heading_movie_info_episode_frame">
+                <a href="sadasds" class="heading_movie_info_episode_link">
+                    <span><i class="fas fa-film heading_movie_info_episode_icon"></i></span>
+                    <span class="heading_movie_info_episode_name">@Model.movie.name</span>
+                </a>
+            </div>
+
+            <div class="episode_watching">
+                <span>Đang xem tập</span>
+            </div>
+            <div class="episode">
+                <div>Tập @Model.episode.episodeNumber </div>
+            </div>
+        </div>
+        <div class="video" style="text-align:center;margin-left:30px;">
+            <video controls crossorigin playsinline poster="~/Assets/Images/MovieImages/@Model.movie.image" id="player" style="max-width:1020px;">
+                <!-- Video files -->
+                <source src="~/Assets/img/video/KDA-More-1080p.mp4" type="video/mp4" size="576">
+                <source src="~/Assets/img/video/KDA-More-1080p.mp4" type="video/mp4" size="720">
+                <source src="~/Assets/img/video/KDA-More-1080p.mp4" type="video/mp4" size="1080">
+
+                <!-- Caption files -->
+                <track kind="captions" label="English" srclang="en" src="" default>
+                <track kind="captions" label="Français" srclang="fr" src="">
+
+                <!-- Fallback for browsers that don't support the <video> element -->
+                <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
+            </video>
+        </div>
+        <div class="body_episode">
+            <div class="list_episode">
+                <div class="heading_list_episode">
+                    <h3>Danh sách tập</h3>
+                </div>
+                <div class="list_episode_item">
+                    @foreach (var item in Model.list_episode)
+                    {
+                        <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="comment">
+            <div class="heading_comment">
+                <i class="far fa-comment-alt heading_comment"></i>
+                <h3 class="heading_comment comment_count"></h3>
+            </div>
+            <div class="comment_login">
+                <a href="">Đăng nhập để bình luận</a>
+            </div>
+
+        </div>
+        @Html.Partial("_load_comment")
+    </div>
+</section>
