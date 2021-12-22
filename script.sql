@@ -36,6 +36,9 @@ CREATE TABLE Movie(
 	nameInSeries NVARCHAR(255),
 	status INT -- 0-đang tiến hành - 1-hoàn thành
 )
+SELECT *FROM Account
+SELECT *FROM Movie
+SELECT *FROM Comment
 CREATE TABLE ViewsByDate(
 	id INT PRIMARY KEY IDENTITY,
 	movieId INT FOREIGN KEY REFERENCES Movie(id) ON DELETE CASCADE,

@@ -1,0 +1,85 @@
+﻿.heading_user {
+}
+.heading_user span {
+    color: #ff9393;
+}
+.account_frame {
+    display: flex;
+    background-color: #000;
+}
+
+.list_menu_account {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_account {
+    display: flex;
+    justify-content: flex-start;
+    background: #1c1c1c;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.account_info {
+    background: #404040;
+    padding: 10px;
+    box-sizing: border-box;
+    flex: 3;
+}
+
+.top_user_profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_image {
+    margin: 0;
+}
+
+    .user_image img {
+        width: 140px;
+        height:140px;
+        border: 11px double #0c0c0c;
+        border-radius: 5px;
+    }
+.change_avatar {
+    background-color: #6b6a6a;
+    display: inline-flex;
+    border-radius: 5px;
+    margin: 0 2px;
+    padding: 10px;
+    border-bottom: 3px solid #292929;
+    cursor: pointer;
+}
+.bottom_user_profile {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #4e4e4e;
+    color: #fff;
+    background-color: #505050;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background 0.2s linear, border 0.2s linear;
+    border-radius: 5px;
+}
+.bottom_user_profile label {
+    color: #ff9393;
+
+}
+.submit_form {
+    width: 100px;
+    padding: 10px;
+    background-color: #b73a3a !important;
+    margin-top: 10px;
+}
+
+.bottom_user_profile input{
+    background-color:#000;
+    border-radius:5px;
+    padding:6px;
+}

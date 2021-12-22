@@ -26,16 +26,15 @@
         <div class="video" style="text-align:center;margin-left:30px;">
             <video controls crossorigin playsinline poster="~/Assets/Images/MovieImages/@Model.movie.image" id="player" style="max-width:1020px;">
                 <!-- Video files -->
-                <source src="~/Assets/img/video/KDA-More-1080p.mp4" type="video/mp4" size="576">
-                <source src="~/Assets/img/video/KDA-More-1080p.mp4" type="video/mp4" size="720">
-                <source src="~/Assets/img/video/KDA-More-1080p.mp4" type="video/mp4" size="1080">
-
+                <source src="~/Assets/Videos/@Model.episode.video" type="video/mp4" size="576">
+                <source src="~/Assets/Videos/@Model.episode.video" type="video/mp4" size="720">
+                <source src="~/Assets/Videos/@Model.episode.video" type="video/mp4" size="1080">
                 <!-- Caption files -->
                 <track kind="captions" label="English" srclang="en" src="" default>
                 <track kind="captions" label="Français" srclang="fr" src="">
 
                 <!-- Fallback for browsers that don't support the <video> element -->
-                <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
+                <a href="" download>Download</a>
             </video>
         </div>
         <div class="body_episode">

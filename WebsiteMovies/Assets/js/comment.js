@@ -31,14 +31,24 @@ $('[data-toggle="collapse"]').on('click', function() {
                     //console.log(item);
                     if (item.fatherComment == null && item != null) {
                         var replyToggle = "reply" + "father" + item.id;
-                         
+                        dateTimeReviver = function (key, value) {
+                            var a ;
+                            if (typeof value === 'string') {
+                                a = /\/Date\((\d*)\)\//.exec(value);
+                                if (a) {
+                                    return new Date(+a[1]);
+                                }
+                            }
+                            return value;
+                        }
+                        console.log(dateTimeReviver(1, item.commentDate))
                         soluong_comment = respone.length
                       //  console.log(soluong_comment)
                         let _fatherComment = `<div class="comment_item_father">
                                                     
                                                         <div class="left_comment_item">
                                                             <div class="avatar">
-                                                                <img src="~/Assets/Images/AccountImages/${item.imageAccount}" />
+                                                                <img src="~/Assets/Images/AccountImages/${item.imageAccount}"alt="Ảnh đại diện" />
                                                             </div>
                                                         </div>
                                                         <div class="right_comment_item">

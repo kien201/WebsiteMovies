@@ -40,13 +40,14 @@ namespace WebsiteMovies.Controllers
 
             int _id = Convert.ToInt32(id);
             int _episodeIsplaying = Convert.ToInt32(Request["episode_option"]);
+            
 
             var _movie = new Movie();
             var _episode_playing = new Episode();
             var _list_episode = new List<Episode>();
 
             _movie = db.Movie.Find(_id);
-            _episode_playing = db.Episode.Find(_episodeIsplaying);
+            _episode_playing = db.Episode.Where(x => x.id == _episodeIsplaying).SingleOrDefault();
             _list_episode = db.Episode.Where(x => x.movieId == _id).ToList();
 
             custom.movie = _movie;
@@ -58,7 +59,11 @@ namespace WebsiteMovies.Controllers
         public ActionResult _load_comment(int id)
         {
             int _id = id;
-            var _load_comment = db.Comment.Select(x => new { id = x.id, movieId = x.movieId, movieName = x.Movie.name, displayName = x.Account.displayName,imageAccount=x.Account.image, content = x.content, commentDate = x.commentDate, fatherComment = x.fatherComment }).Where(x => x.movieId == _id).ToList();
+            var _load_comment = db.Comment.Select(x => new { id = x.id,
+                movieId = x.movieId, movieName = x.Movie.name,
+                displayName = x.Account.displayName,imageAccount=x.Account.image,
+                content = x.content, commentDate = x.commentDate, fatherComment = x.fatherComment })
+                .Where(x => x.movieId == _id).ToList();
 
             return Json(_load_comment, JsonRequestBehavior.AllowGet);
 
@@ -68,22 +73,11 @@ namespace WebsiteMovies.Controllers
             int movie_id = Convert.ToInt32(id);
 
             string _comment = comment;
-            var time = DateTime.Now;
-            Comment cm = new Comment() { movieId = movie_id, accountId = 1, content = _comment, commentDate = time };
+            
+            Comment cm = new Comment() { movieId = movie_id, accountId = 1, content = _comment};
             db.Comment.Add(cm);
             db.SaveChanges();
             return Json("thành công", JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Add_commentChild(int id, int id_commentFather, string comment)
-        {
-            int movie_id = Convert.ToInt32(id);
-            int _idCommentFather = Convert.ToInt32(id_commentFather);
-            string _comment = comment;
-            var time = DateTime.Now;
-            Comment cm = new Comment() { movieId = movie_id, accountId = 1, content = _comment, commentDate = time, fatherComment = _idCommentFather };
-            db.Comment.Add(cm);
-            db.SaveChanges();
-            return Json("Thành công", JsonRequestBehavior.AllowGet);
         }
     }
 }
