@@ -221,6 +221,7 @@
     <Content Include="Assets\css\main.css" />
     <Content Include="Assets\css\MovieDetail.css" />
     <Content Include="Assets\css\MovieEpisode.css" />
+    <Content Include="Assets\css\player.css" />
     <Content Include="Assets\css\styles.css" />
     <Content Include="Assets\Images\AccountImages\default-account-image.jpg" />
     <Content Include="Assets\Images\AccountImages\naruto-image.jpg" />
@@ -234,6 +235,7 @@
     <Content Include="Assets\js\comment.js" />
     <Content Include="Assets\js\fontawesome-5-15-3-all.min.js" />
     <Content Include="Assets\js\main.js" />
+    <Content Include="Assets\js\player.js" />
     <Content Include="Assets\js\scripts.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

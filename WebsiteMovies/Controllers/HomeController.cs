@@ -48,19 +48,19 @@ namespace WebsiteMovies.Controllers
             CustomModel custom = new CustomModel();
 
             int _id = Convert.ToInt32(id);
-            int _episodeIsplaying = Convert.ToInt32(Request["episode_option"]);
+            int episode_option = Convert.ToInt32(Request["episode_option"]);
             
 
             var _movie = new Movie();
-            var _episode_playing = new Episode();
+            var _episode_option = new Episode();
             var _list_episode = new List<Episode>();
 
             _movie = db.Movie.Find(_id);
-            _episode_playing = db.Episode.Find(_episodeIsplaying);
+            _episode_option = db.Episode.Find(episode_option);
             _list_episode = db.Episode.Where(x => x.movieId == _id).ToList();
 
             custom.movie = _movie;
-            custom.episode = _episode_playing;
+            custom.episode = _episode_option;
             custom.list_episode = _list_episode;
             return View(custom);
         }
@@ -73,7 +73,8 @@ namespace WebsiteMovies.Controllers
                 movieId = x.movieId, movieName = x.Movie.name,
                 displayName = x.Account.displayName,imageAccount=x.Account.image,
                 content = x.content, commentDate =x.commentDate, fatherComment = x.fatherComment })
-                .Where(x => x.movieId == _id).OrderBy(x=>x.commentDate).ToList();
+                .Where(x => x.movieId == _id).OrderByDescending(x=>x.commentDate).ToList();
+
             foreach(var item in _load_comment)
             {
                
@@ -98,7 +99,6 @@ namespace WebsiteMovies.Controllers
                 int today_second = secondNow + minuteNow*60 + hourNow*3600 + dayNow*86400 + monthNow * 2592000 + yearNow*31536000;
 
                 int result_second = today_second- comment_date_Second;
-
                             
                 date_comment.Add(new { id = item.id,
                     movieId = item.movieId,movieName=item.movieName,
@@ -114,11 +114,13 @@ namespace WebsiteMovies.Controllers
 
             string _comment = comment;
             DateTime dt = DateTime.Now;
-            string ketqua = dt.ToString("dd");
+
             Comment cm = new Comment() { movieId = movie_id, accountId = 1, content = _comment ,commentDate= dt };
+
             db.Comment.Add(cm);
             db.SaveChanges();
-            return Json(ketqua, JsonRequestBehavior.AllowGet);
+
+            return Json("Thành công", JsonRequestBehavior.AllowGet);
         }
     }
 }
