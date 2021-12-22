@@ -7,10 +7,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Comment</h4>
         <hr />
@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fatherComment, "fatherComment", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("fatherComment", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("fatherComment", null, "", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.fatherComment, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,5 +64,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index")
 </div>
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}

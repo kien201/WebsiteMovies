@@ -33,7 +33,13 @@
             </div>
             <div class="status movie_list">
                 <div class="movie_list_name">Trạng thái</div>
-                <div class="movie_list_intro">@Model.movie.status</div>
+
+                @{
+                    var status = (Model.movie.status == 1) ? "Hoàn thành" : "Chưa hoàn thành";
+
+                 }
+
+                <div class="movie_list_intro">@status</div>
             </div>
             <div class="score movie_list">
                 <div class="movie_list_name">Điểm</div>
@@ -52,7 +58,8 @@
     <div class="follow-and-play">
         <div class="follow-and-play_frame">
             <div class="play_movie" title="Xem phim">
-                <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=1"><i class="far fa-play-circle"></i></a>
+
+                <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@Model.episode.id"><i class="far fa-play-circle"></i></a>
             </div>
             <div class="follow_movie" title="Theo dõi bộ phim này">
                 <a href=""><i class="far fa-plus-square"></i></a>
@@ -62,10 +69,11 @@
     <div class="bind_movie">
         <h3 class="heading_bind">Phim liên kết</h3>
         <div class="list_serie_bind">
-            <a href="" class="active">Phần 1</a>
-            <a href="" class="">Phần 2</a>
-            <a href="" class="">Phần 3</a>
-            <a href="" class="">Phần 4</a>
+            @foreach (var item in Model.list_movie)
+            {
+                
+                <a href="" class="">@item.name</a>
+            }
         </div>
     </div>
     <div class="body_episode">
@@ -76,7 +84,14 @@
             <div class="list_episode_item">
                 @foreach (var item in Model.list_episode)
                 {
-                    <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                    if (item.episodeNumber == 0)
+                    {
+                        <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">FULL</a>
+                    }
+                    else
+                    {
+                        <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                    }
                 }
 
 

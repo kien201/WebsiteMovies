@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<WebsiteMovies.Models.Comment>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý bình luận";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Quản lý bình luận</li>
+</ol>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-primary" href="@Url.Action("Create")">
+        <i class="fas fa-plus"></i> Thêm bình luận
+    </a>
 </p>
 <table class="table">
     <tr>
@@ -30,29 +34,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.commentDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Account.displayName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment2.content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movie.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.commentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.displayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment2.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.name)
+            </td>
+            <td>
+                <div class="btn-group">
+
+                    <a class="btn btn-details" href="@Url.Action("Details", new { id = item.id })">
+                        <i class="fas fa-eye"></i> Chi tiết
+                    </a>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.id })">
+                        <i class="fas fa-pen"></i> Sửa
+                    </a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.id })">
+                        <i class="fas fa-trash"></i> Xóa
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>

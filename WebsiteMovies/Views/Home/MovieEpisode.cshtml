@@ -20,11 +20,21 @@
                 <span>Đang xem tập</span>
             </div>
             <div class="episode">
-                <div>Tập @Model.episode.episodeNumber </div>
+                @{
+                    if (Model.episode.episodeNumber == 0)
+                    {
+                        <div>Tập FULL </div>
+                    }
+                    else
+                    {
+                        <div>Tập @Model.episode.episodeNumber </div>
+                    }
+                }
+
             </div>
         </div>
         <div class="video" style="text-align:center;margin-left:30px;">
-            <video controls crossorigin playsinline poster="~/Assets/Images/MovieImages/@Model.movie.image" id="player" style="max-width:1020px;">
+            <video controls crossorigin playsinline poster="~/Assets/Images/MovieImages/@Model.movie.image" id="player" style="max-width:1020px;max-height:600px">
                 <!-- Video files -->
                 <source src="~/Assets/Videos/@Model.episode.video" type="video/mp4" size="576">
                 <source src="~/Assets/Videos/@Model.episode.video" type="video/mp4" size="720">
@@ -45,7 +55,14 @@
                 <div class="list_episode_item">
                     @foreach (var item in Model.list_episode)
                     {
-                        <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                        if (item.episodeNumber == 0)
+                        {
+                            <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">FULL</a>
+                        }
+                        else
+                        {
+                            <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                        }
                     }
 
 

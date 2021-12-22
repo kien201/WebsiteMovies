@@ -229,6 +229,7 @@
     <Content Include="Assets\Images\MovieImages\Kimetsu-no-Yaiba.jpg" />
     <Content Include="Assets\Images\Logo.png" />
     <Content Include="Assets\Images\MovieImages\default-movie-image.png" />
+    <Content Include="Assets\Images\MovieImages\onepiece-movie-1.jpg" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
     <Content Include="Assets\js\comment.js" />
     <Content Include="Assets\js\fontawesome-5-15-3-all.min.js" />
