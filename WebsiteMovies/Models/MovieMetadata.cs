@@ -13,6 +13,7 @@ namespace WebsiteMovies.Models
         public string name { get; set; }
 
         [Display(Name = "Tên khác")]
+        [DisplayFormat(NullDisplayText = "??")]
         public string anotherName { get; set; }
 
         [Display(Name = "Ảnh")]
@@ -27,7 +28,9 @@ namespace WebsiteMovies.Models
         public string description { get; set; }
 
         [Display(Name = "Thời lượng")]
-        public string duration { get; set; }
+        [Range(1, 9999, ErrorMessage = "Giá trị nằm trong khoảng 1 đến 9999")]
+        [DisplayFormat(NullDisplayText = "??")]
+        public Nullable<int> duration { get; set; }
 
         [Display(Name = "Phần")]
         [Range(1, 9999, ErrorMessage = "Giá trị nằm trong khoảng 1 đến 9999")]
@@ -37,6 +40,10 @@ namespace WebsiteMovies.Models
         [Display(Name = "Tên hiển thị trong series")]
         [DisplayFormat(NullDisplayText = "??")]
         public string nameInSeries { get; set; }
+
+        [Display(Name = "Mới cập nhật")]
+        [DisplayFormat(DataFormatString = "{0:HH:mmp - dd/MM/yyyy}")]
+        public Nullable<DateTime> updatedDate { get; set; }
 
         [Display(Name = "Trạng thái")]
         public Nullable<int> status { get; set; }

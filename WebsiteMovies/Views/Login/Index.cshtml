@@ -1,0 +1,58 @@
+﻿@model WebsiteMovies.Models.Account
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <style>
+        .form-checkin-container {
+            width: 60%;
+            margin: auto;
+        }
+
+        .form-checkin-container .form-input {
+            width: 100%;
+            border: none;
+            padding: 10px;
+        }
+    </style>
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Đăng nhập thành viên
+    </div>
+</div>
+<div class="section-content p-3">
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.Hidden("email", "example@gmail.com")
+    <div class="form-checkin-container">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+        <div class="mb-3">
+            @Html.LabelFor(m => m.userName, new { @class = "mb-1" })
+            @Html.EditorFor(m => m.userName, new { htmlAttributes = new { @class = "form-input bg-black color-gray", @placeholder = "Tài khoản" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+        <div class="mb-3">
+            @Html.LabelFor(m => m.pass, new { @class = "mb-1" })
+            @Html.EditorFor(m => m.pass, new { htmlAttributes = new { @class = "form-input bg-black color-gray", @placeholder = "Mật khẩu" } })
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" id="inputRememberPassword" name="inputRememberPassword" type="checkbox" />
+            <label class="form-check-label" for="inputRememberPassword">Nhớ mật khẩu</label>
+        </div>
+        <div class="text-center mb-3">
+            Bạn chưa có tài khoản? @Html.ActionLink("Đăng ký", "Register", "Login", null, new { @class = "text-go-to-register" })
+        </div>
+        <div class="text-center">
+            <button class="btn btn-login" type="submit">Đăng nhập</button>
+        </div>
+    </div>
+        
+    }
+</div>

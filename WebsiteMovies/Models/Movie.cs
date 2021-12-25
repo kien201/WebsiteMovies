@@ -31,11 +31,12 @@ namespace WebsiteMovies.Models
         public string image { get; set; }
         public Nullable<int> releaseYear { get; set; }
         public string description { get; set; }
-        public string duration { get; set; }
+        public Nullable<int> duration { get; set; }
         public Nullable<int> seriesId { get; set; }
         public Nullable<int> part { get; set; }
         public string nameInSeries { get; set; }
         public Nullable<int> status { get; set; }
+        public Nullable<System.DateTime> updatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CategoryForMovies> CategoryForMovies { get; set; }

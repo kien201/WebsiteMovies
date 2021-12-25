@@ -137,13 +137,18 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SeriesController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\SearchMoviesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdditionalDTO\MovieInfo.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
@@ -210,10 +215,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\bootstrap-5-1-3.css" />
+    <Content Include="Assets\css\customer-follow.css" />
+    <Content Include="Assets\css\customer-history.css" />
+    <Content Include="Assets\css\customer-home.css" />
+    <Content Include="Assets\css\customer-layout.css" />
+    <Content Include="Assets\css\partial-movie-list.css" />
+    <Content Include="Assets\Images\Logo.png" />
     <Content Include="Assets\Images\AccountImages\default-account-image.jpg" />
     <Content Include="Assets\Images\MovieImages\default-movie-image.png" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
     <Content Include="Assets\js\fontawesome-5-15-3-all.min.js" />
+    <Content Include="Assets\js\home-movie-slider.js" />
     <Content Include="Assets\js\scripts.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -294,9 +306,21 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Home\Notify.cshtml" />
+    <Content Include="Views\Movies\_MovieList.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Categories\_RenderCategory.cshtml" />
+    <Content Include="Views\Movies\_RenderReleaseYear.cshtml" />
+    <Content Include="Views\Movies\Category.cshtml" />
+    <Content Include="Views\Movies\ReleaseYear.cshtml" />
+    <Content Include="Views\SearchMovies\Index.cshtml" />
+    <Content Include="Views\SearchMovies\_Pagination.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\Home\Follow.cshtml" />
+    <Content Include="Views\Home\_Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

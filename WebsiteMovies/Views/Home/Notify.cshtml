@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AnimeVn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <style>
+        .text-red {
+            color: #bd2727;
+        }
+    </style>
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Thông báo
+    </div>
+</div>
+<div class="section-content text-center p-3 bg-black">
+    <h2 class="text-red">@ViewBag.msg</h2>
+</div>

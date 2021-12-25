@@ -1,0 +1,65 @@
+﻿@model WebsiteMovies.Models.Account
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <style>
+        .form-checkin-container {
+            width: 60%;
+            margin: auto;
+        }
+
+            .form-checkin-container .form-input {
+                width: 100%;
+                border: none;
+                padding: 10px;
+            }
+    </style>
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Đăng ký thành viên
+    </div>
+</div>
+<div class="section-content p-3">
+    @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+    <div class="form-checkin-container">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.displayName, "", new { @class = "text-danger" })
+        <div class="mb-3">
+            @Html.LabelFor(m => m.displayName, new { @class = "mb-1" })
+            @Html.EditorFor(m => m.displayName, new { htmlAttributes = new { @class = "form-input bg-black color-gray", @placeholder = "Tên hiển thị" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        <div class="mb-3">
+            @Html.LabelFor(m => m.email, new { @class = "mb-1" })
+            @Html.EditorFor(m => m.email, new { htmlAttributes = new { @class = "form-input bg-black color-gray", @placeholder = "Email" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+        <div class="mb-3">
+            @Html.LabelFor(m => m.userName, new { @class = "mb-1" })
+            @Html.EditorFor(m => m.userName, new { htmlAttributes = new { @class = "form-input bg-black color-gray", @placeholder = "Tài khoản" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+        <div class="mb-3">
+            @Html.LabelFor(m => m.pass, new { @class = "mb-1" })
+            @Html.EditorFor(m => m.pass, new { htmlAttributes = new { @class = "form-input bg-black color-gray", @placeholder = "Mật khẩu" } })
+        </div>
+        <div class="mb-3">
+            <label class="mb-1" for="retypePass">Nhập lại mật khẩu</label>
+            <input type="password" class="form-input bg-black color-gray" name="retypePass" id="retypePass" placeholder="Nhập lại mật khẩu">
+        </div>
+        <div class="text-center mb-3">
+            Bạn đã có tài khoản? @Html.ActionLink("Đăng nhập", "Index", "Login", null, new { @class = "text-go-to-login" })
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-register">Đăng ký</button>
+        </div>
+    </div>
+    }
+</div>

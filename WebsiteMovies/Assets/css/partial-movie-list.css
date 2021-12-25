@@ -1,0 +1,115 @@
+﻿.movie-list .movie-item {
+    position: relative;
+    width: 20%;
+    margin-bottom: 5px;
+    background: #000;
+    padding: 5px;
+    border: 2px solid var(--content-background);
+}
+
+    .movie-list .movie-item .episode-latest {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        padding: 5px 10px;
+        background-color: #383838;
+        border-radius: 4px;
+        border: 3px double #5a5a5a;
+        letter-spacing: 1px;
+    }
+
+    .movie-list .movie-item .image {
+        padding-top: 140%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .movie-list .movie-item .score {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        padding: 5px 10px;
+        background-color: #903a3a;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+
+    .movie-list .movie-item .movie-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-top: 5px;
+        padding: 3px 5px;
+        text-align: center;
+        color: #cc8d4c;
+    }
+
+.pagination a {
+    border-radius: 0;
+    color: #f3dede;
+    background-color: #585858;
+    padding: 4px 16px;
+    font-size: 15px;
+}
+
+    .pagination a:hover,
+    .movie-list .movie-item:hover {
+        opacity: 0.7;
+    }
+
+.pagination .btn-active {
+    background-color: #4caf50;
+}
+
+.pagination .btn-toggle-pagination {
+    background-color: #a54f4f;
+}
+
+.pagination .form-go-to-page {
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    left: 0;
+    animation: pagingFadeUp .2s linear;
+}
+
+@keyframes pagingFadeUp {
+    from {
+        opacity: 0;
+        bottom: 50%;
+    }
+
+    to {
+        opacity: 1;
+        bottom: 100%;
+    }
+}
+
+.pagination .input-paging {
+    padding: 8px 12px;
+    border: none;
+    width: 100%;
+}
+
+.pagination .btn-paging {
+    border: none;
+    background-color: #ccc;
+    padding: 0 12px;
+}
+
+    .pagination .btn-paging:hover {
+        background-color: #ddd;
+    }
+
+@media (min-width: 740px) and (max-width: 1024px) {
+    .movie-list .movie-item {
+        width: 25%;
+    }
+}
+
+@media (max-width: 739px) {
+    .movie-list .movie-item {
+        width: 50%;
+    }
+}

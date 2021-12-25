@@ -4,11 +4,11 @@
     <EntitySetMapping Name="Account">
       <EntityTypeMapping TypeName="MovieModel.Account">
         <MappingFragment StoreEntitySet="Account">
-          <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="pass" ColumnName="pass" />
           <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="displayName" ColumnName="displayName" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -75,6 +75,7 @@
     <EntitySetMapping Name="Movie">
       <EntityTypeMapping TypeName="MovieModel.Movie">
         <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="nameInSeries" ColumnName="nameInSeries" />
           <ScalarProperty Name="part" ColumnName="part" />

@@ -39,10 +39,9 @@ namespace WebsiteMovies.Models
         public override string[] GetRolesForUser(string username)
         {
             var account = db.Account.SingleOrDefault(x => x.userName == username);
-            string role = account.role == 0 ? "Admin" : "Member";
             if (account != null)
             {
-                HttpContext.Current.Session.Add("curAccount", account);
+                string role = account.role == 0 ? "Admin" : "Member";
                 return new string[] { role };
             }
             else return new string[] { };

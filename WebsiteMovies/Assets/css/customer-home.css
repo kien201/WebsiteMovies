@@ -1,0 +1,78 @@
+.slider {
+    position: relative;
+}
+
+    .slider .slider-outer {
+        width: calc(205px * 15);
+        transition: all .5s ease 0s;
+    }
+
+    .slider .slider-item {
+        width: 249px;
+        position: relative;
+        float: left;
+    }
+
+        .slider .slider-item:hover {
+            opacity: 0.7;
+        }
+
+    .slider::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .slider .slider-item .image {
+        padding-top: 140%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .slider .slider-item .episode-latest {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        padding: 5px 10px;
+        background-color: #903a3a;
+        font-size: 12px;
+        border-radius: 4px;
+        letter-spacing: 1px;
+    }
+
+    .slider .slider-item .movie-name {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+        text-shadow: 0 0 2px #000;
+    }
+
+    .slider .btn-left,
+    .slider .btn-right {
+        display: block;
+        color: inherit;
+        border: none;
+        position: absolute;
+        font-size: 40px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px 8px;
+        top: calc(50% - 42px);
+    }
+
+        .slider .btn-left:hover,
+        .slider .btn-right:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+        }
+
+    .slider .btn-right {
+        right: 0;
+    }

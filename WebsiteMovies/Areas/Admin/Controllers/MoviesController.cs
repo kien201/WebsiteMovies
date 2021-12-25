@@ -18,7 +18,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // GET: Admin/Movies
         public ActionResult Index()
         {
-            var movie = db.Movie.OrderByDescending(x => x.id).Include(m => m.Series);
+            var movie = db.Movie.OrderByDescending(x => x.updatedDate).Include(m => m.Series);
             return View(movie.ToList());
         }
 
@@ -48,7 +48,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // GET: Admin/Movies/Create
         public ActionResult Create()
         {
-            ViewBag.seriesId = new SelectList(db.Series, "id", "name");
+            ViewBag.seriesId = new SelectList(db.Series.OrderBy(x => x.name), "id", "name");
             ViewBag.status = new SelectList(GetStatusList(), "Value", "Text", 0);
             return View();
         }
@@ -70,12 +70,13 @@ namespace WebsiteMovies.Areas.Admin.Controllers
             else movie.image = "default-movie-image.png";
             if (ModelState.IsValid)
             {
+                movie.updatedDate = DateTime.Now;
                 db.Movie.Add(movie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.seriesId = new SelectList(db.Series, "id", "name", movie.seriesId);
+            ViewBag.seriesId = new SelectList(db.Series.OrderBy(x => x.name), "id", "name", movie.seriesId);
             ViewBag.status = new SelectList(GetStatusList(), "Value", "Text", movie.status);
             return View(movie);
         }
@@ -92,7 +93,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.seriesId = new SelectList(db.Series, "id", "name", movie.seriesId);
+            ViewBag.seriesId = new SelectList(db.Series.OrderBy(x => x.name), "id", "name", movie.seriesId);
             ViewBag.status = new SelectList(GetStatusList(), "Value", "Text", movie.status);
             return View(movie);
         }
@@ -102,7 +103,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,anotherName,image,releaseYear,description,duration,seriesId,part,nameInSeries,status")] Movie movie, string oldImageName)
+        public ActionResult Edit([Bind(Include = "id,name,anotherName,image,releaseYear,description,duration,seriesId,part,nameInSeries,updatedDate,status")] Movie movie, string oldImageName)
         {
             var f = Request.Files["image"];
             if (f != null && f.ContentLength > 0)
@@ -118,7 +119,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.seriesId = new SelectList(db.Series, "id", "name", movie.seriesId);
+            ViewBag.seriesId = new SelectList(db.Series.OrderBy(x => x.name), "id", "name", movie.seriesId);
             ViewBag.status = new SelectList(GetStatusList(), "Value", "Text", movie.status);
             return View(movie);
         }

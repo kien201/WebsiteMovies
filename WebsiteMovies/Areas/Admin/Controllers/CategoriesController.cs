@@ -23,21 +23,14 @@ namespace WebsiteMovies.Areas.Admin.Controllers
 
         public JsonResult GetList(int idMovie)
         {
-            var listCategoryForMovie = db.CategoryForMovies.Where(x => x.movieId == idMovie).ToList();
-            var listCategory = new List<object>();
-            foreach (var item in db.Category.OrderBy(x => x.name).ToList())
-            {
-                bool isExist = false;
-                foreach (var categoryForMovie in listCategoryForMovie)
+            var listCategory = db.Category.OrderBy(x => x.name)
+                .Select(x => new
                 {
-                    if(item.id == categoryForMovie.categoryId)
-                    {
-                        isExist = true;
-                        break;
-                    }
-                }
-                listCategory.Add(new { item.id, item.name, isExist = isExist });
-            }
+                    x.id,
+                    x.name,
+                    isExist = db.CategoryForMovies.Where(y => y.categoryId == x.id && y.movieId == idMovie)
+                                .Count() != 0
+                }).ToList();
             return Json(listCategory, JsonRequestBehavior.AllowGet);
         }
 

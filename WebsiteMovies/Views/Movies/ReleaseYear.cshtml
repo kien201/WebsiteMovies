@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebsiteMovies.Models.AdditionalDTO.MovieInfo>
+@{
+    ViewBag.Title = "Phim theo năm phát hành";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/Assets/css/partial-movie-list.css" />
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Phim năm @ViewBag.releaseYear trang @ViewBag.currentPage
+    </div>
+</div>
+@Html.Action("RenderListMovie", "Movies", new { listMovie = Model, sendAction = ViewContext.RouteData.Values["action"], ViewBag.totalMovieInPage, ViewBag.currentPage })

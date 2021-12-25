@@ -1,0 +1,6 @@
+﻿@model IEnumerable<WebsiteMovies.Models.Category>
+
+@foreach (var item in Model)
+{
+    @Html.ActionLink(item.name, "Category", "Movies", new { id = item.id }, new { @class = "col-4 p-2 text-center" })
+}

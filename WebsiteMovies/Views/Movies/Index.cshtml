@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebsiteMovies.Models.AdditionalDTO.MovieInfo>
+
+@{
+    ViewBag.Title = "Phim mới cập nhật";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/Assets/css/partial-movie-list.css" />
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Phim mới cập nhật trang @ViewBag.currentPage
+    </div>
+</div>
+@Html.Action("RenderListMovie", "Movies", new { listMovie = Model, sendAction = ViewContext.RouteData.Values["action"], ViewBag.totalMovieInPage, ViewBag.currentPage })

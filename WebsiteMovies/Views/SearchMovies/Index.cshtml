@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebsiteMovies.Models.AdditionalDTO.MovieInfo>
+
+@{
+    ViewBag.Title = "Tìm kiếm phim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/Assets/css/partial-movie-list.css" />
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Tìm kiếm từ khóa "@ViewBag.movieName"
+    </div>
+</div>
+
+<div class="movie-list section-content d-flex flex-wrap my-2 p-2">
+    @foreach (var item in Model)
+    {
+        <div class="movie-item">
+            <a href="@Url.Action("","Home", new { id = item.movie.id })" title="@item.movie.name">
+                <div class="episode-latest fw-bold"> @item.movie.Episode.Count/@(item.movie.duration!=null ? item.movie.duration.ToString() : "??") </div>
+                <div class="image" style="background-image: url('/Assets/Images/MovieImages/@item.movie.image');"></div>
+                <div class="score fw-bold"> @item.score.ToString("N1") </div>
+                <div class="movie-name fw-bold"> @item.movie.name </div>
+            </a>
+        </div>
+    }
+</div>
+
+@Html.Action("Pagination", "SearchMovies", new { sendAction = ViewContext.RouteData.Values["action"], ViewBag.lastPage, ViewBag.currentPage })
