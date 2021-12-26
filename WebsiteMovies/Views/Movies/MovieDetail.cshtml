@@ -1,9 +1,13 @@
-﻿@model  WebsiteMovies.Models.CustomModel.CustomModel
+﻿@model WebsiteMovies.Models.CustomModel.CustomModel
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Phim " + Model.movie.name;
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
     <link rel="stylesheet" href="~/Assets/css/MovieDetail.css" />
+    <link rel="stylesheet" href="~/Assets/css/comment-Rating.css" />
 }
 
 <!-- details -->
@@ -26,7 +30,7 @@
                 <div class="movie_list_intro movie_list_intro_list_cate">
                     @foreach (var item in Model.list_categoryformovies)
                     {
-                        <a href="">@item.Category.name</a>
+                        <a href="@Url.Action("Category","Movies",new { id = item.categoryId })">@item.Category.name</a>
                     }
                 </div>
 
@@ -41,17 +45,17 @@
 
                 <div class="movie_list_intro">@status</div>
             </div>
-            @{ 
+            @{
                 int dem = 0;
                 float tong = 0;
                 foreach (var item in Model.movie_rate)
                 {
-                    tong=Convert.ToSingle(tong+item.rateNumber);
+                    tong = Convert.ToSingle(tong + item.rateNumber);
                     dem++;
-                       
+
                 }
                 tong = tong / dem;
-                var dtong=Math.Round(tong);
+                var dtong = Math.Round(tong);
             }
             <div class="score movie_list">
                 <div class="movie_list_name">Điểm</div>
@@ -63,50 +67,66 @@
             </div>
             <div class="duration movie_list">
                 <div class="movie_list_name">Thời lượng</div>
-                <div class="movie_list_intro">@Model.movie.duration Tập</div>
+                <div class="movie_list_intro">
+                    @(Model.movie.duration!=null ? Model.movie.duration.ToString() : "??") Tập
+                </div>
             </div>
         </div>
     </div>
     <div class="follow-and-play">
         <div class="follow-and-play_frame">
             <div class="play_movie" title="Xem phim">
-
-                <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@Model.episode.id"><i class="far fa-play-circle"></i></a>
+                @if (Model.episode != null)
+                {
+                    <a href="/Movies/MovieEpisode/@Model.movie.id?episode_option=@Model.episode.id"><i class="far fa-play-circle"></i></a>
+                }
+                else
+                {
+                    <a><i class="far fa-play-circle"></i></a>
+                }
             </div>
             <div class="follow_movie" title="Theo dõi bộ phim này">
-                <a href=""><i class="far fa-plus-square"></i></a>
+                <a onclick="FollowMovie(this, @Model.movie.id)"><i class="far fa-plus-square"></i></a>
             </div>
         </div>
     </div>
-    <div class="bind_movie">
-        <h3 class="heading_bind">Phim liên kết</h3>
-        <div class="list_serie_bind">
-            @foreach (var item in Model.list_movie)
-            {
+    @if (Model.list_movie.Count > 0)
+    {
+        <div class="bind_movie">
+            <h3 class="heading_bind">Phim liên kết</h3>
+            <div class="list_serie_bind">
+                @foreach (var item in Model.list_movie)
+                {
 
-                <a href="" class="">@item.name</a>
-            }
+                    <a href="@Url.Action("MovieDetail","Movies",new { id = item.id })" class="">@item.nameInSeries</a>
+                }
+            </div>
         </div>
-    </div>
+    }
     <div class="body_episode">
         <div class="list_episode">
             <div class="heading_list_episode">
                 <h3>Danh sách tập</h3>
             </div>
             <div class="list_episode_item">
-                @foreach (var item in Model.list_episode)
+                @if (Model.list_episode.Count == 0)
                 {
-                    if (item.episodeNumber == 0)
+                    <p>Chưa có tập</p>
+                }
+                else
+                {
+                    foreach (var item in Model.list_episode)
                     {
-                        <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">FULL</a>
-                    }
-                    else
-                    {
-                        <a href="/Home/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                        if (item.episodeNumber == 0)
+                        {
+                            <a href="/Movies/MovieEpisode/@Model.movie.id?episode_option=@item.id">FULL</a>
+                        }
+                        else
+                        {
+                            <a href="/Movies/MovieEpisode/@Model.movie.id?episode_option=@item.id">Tập @item.episodeNumber</a>
+                        }
                     }
                 }
-
-
             </div>
         </div>
         <div class="movie_content">
@@ -121,20 +141,42 @@
         </div>
     </div>
 
-  
     <div class="comment" style="margin-top:10px;">
         <div class="heading_comment">
             <i class="far fa-comment-alt heading_comment"></i>
             <h3 class="heading_comment comment_count"></h3>
         </div>
-        <div class="comment_login">
-            <a href="">Đăng nhập để bình luận</a>
-        </div>
+        @if (Session["curUser"] == null)
+        {
+            <div class="comment_login">
+                <a href="#ModalLogin" role="button" data-bs-toggle="modal">Đăng nhập để bình luận</a>
+            </div>
+        }
 
     </div>
 
     @Html.Partial("_load_comment")
 
-
-
 </section>
+@section scripts{
+    <script src="~/Assets/js/Movie.js"></script>
+    <script>
+        function FollowMovie(element, movieId) {
+            $.ajax({
+                url: '@Url.Action("FollowMovie", "Movies")',
+                type: "POST",
+                data: JSON.stringify({ id: movieId }),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: (result) => {
+                    alert(result);
+                },
+                error: (err) => {
+                    alert("Lỗi: " + err.responseText);
+                }
+            })
+            /*<i class="far fa-minus-square"></i>*/
+
+        }
+    </script>
+}

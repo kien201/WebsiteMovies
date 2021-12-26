@@ -31,7 +31,7 @@ else
             @foreach (var item in Model)
             {
                 <div class="history-item col-md-6 mb-3">
-                    <a href="@Url.Action("", "Home", new { id = item.Episode.movieId })">
+                    <a href="@Url.Action("MovieDetail", "Movies", new { id = item.Episode.movieId })">
                         <div class="image">
                             <img src="~/Assets/Images/MovieImages/@item.Episode.Movie.image">
                         </div>

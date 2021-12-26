@@ -17,20 +17,17 @@
     load_comment();
     function load_comment() {
         $.ajax({
-            url: "/Home/_load_comment",
+            url: "/Movies/_load_comment",
             method: "POST",
             data: { id: id_movie },
             success: function (respone) {
                 let soluong_comment = 0;
-                 console.log(respone)
                 const comment = $.map(respone, function (item) {
 
-                    //console.log(item);
                     if (item.fatherComment == null && item != null) {
                         var replyToggle = "reply" + "father" + item.id;
                         soluong_comment = respone.length
                         let datecomment;
-                        console.log(item.commentDate);
                         if (item.commentDate >= 0 && item.commentDate<60) {
                             datecomment = "Vừa xong"                           
                         }
@@ -39,7 +36,6 @@
                         }
                         else if (item.commentDate >= 3600 && item.commentDate < 86400) {
                             datecomment = parseInt(item.commentDate/3600) + " " + "giờ";
-                            console.log(item.commentDate);
                         }
                         else if (item.commentDate >= 86400 && item.commentDate < 2592000) {
                             datecomment = parseInt(item.commentDate/86400) +" "+ "ngày";
@@ -51,12 +47,11 @@
                             datecomment = parseInt(item.commentDate/31536000) + " " + "năm";
                         }  
 
-                        //  console.log(soluong_comment)
                         let _fatherComment = `<div class="comment_item_father">
                                                     
                                                         <div class="left_comment_item">
                                                             <div class="avatar">
-                                                                <img src="/Assets/Images/AccountImages/${item.imageAccount}"alt="Ảnh đại diện aa" />
+                                                                <img src="/Assets/Images/AccountImages/${item.imageAccount != null ? item.imageAccount : "default-account-image.jpg"}"alt="Ảnh đại diện" />
                                                             </div>
                                                         </div>
                                                         <div class="right_comment_item">
@@ -78,7 +73,6 @@
                 });
                 const htmls = comment.join("");
                 $('.comment_list').html(htmls);
-                console.log(soluong_comment)
                 $('.comment_count').html(`Bình luận (${soluong_comment})`);
 
             }
@@ -93,11 +87,10 @@
         }
         else {
             $.ajax({
-                url: "/Home/Add_commentFather",
+                url: "/Movies/Add_commentFather",
                 method: "POST",
                 data: { id: id_movie, comment: $('#textarea_commentFather').val() },
                 success: function (respone) {
-                    console.log(respone)
                     load_comment();
                 }
             })

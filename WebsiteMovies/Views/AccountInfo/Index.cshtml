@@ -16,13 +16,14 @@
         <form action="/"class="account_form" method="post">
             <div class="top_user_profile">
                 <div class="user_image">
-                    <img src="~/Assets/Images/AccountImages/@Model.image" class="" alt="Alternate Text" />
+                    <img src="~/Assets/Images/AccountImages/@(Model.image ?? "default-account-image.jpg")" class="" alt="Alternate Text" />
                 </div>
+                <input type="file" class="my-3" />
                 <div class="change_avatar">Thay Avatar</div>
             </div>
             <div class="bottom_user_profile">
                 <label for="displayName">Biệt danh</label>
-                <input type="text" name="displayName" id="displayName" value="@Model.displayName" />
+                <input type="text" name="displayName" id="displayName"  class="text-white" value="@Model.displayName" />
                 <label for="userName">Tài khoản</label>
                 <input type="text" name="userName" id="userName" disabled="disabled" value="@Model.userName" />
                 <label for="email">Email</label>

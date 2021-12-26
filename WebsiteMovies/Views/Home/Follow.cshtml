@@ -29,9 +29,9 @@ else
 <div class="movie-list section-content d-flex flex-wrap my-2 p-2">
     @foreach (var item in Model)
     {
-        <div class="movie-item">
-            <button class="btn-unfollow">X</button>
-            <a href="@Url.Action("", "Home", new { id = item.movie.id })" title="@item.movie.name">
+        <div id="follow_@item.movie.id" class="movie-item">
+            <button onclick="Unfollow(@item.movie.id)" class="btn-unfollow">X</button>
+            <a href="@Url.Action("MovieDetail", "Movies", new { id = item.movie.id })" title="@item.movie.name">
                 <div class="episode-latest fw-bold"> @item.movie.Episode.Count/@(item.movie.duration!=null ? item.movie.duration.ToString() : "??") </div>
                 <div class="image" style="background-image: url('/Assets/Images/MovieImages/@item.movie.image');"></div>
                 <div class="score fw-bold"> @item.score.ToString("N1") </div>
@@ -41,4 +41,25 @@ else
     }
 </div>
     @Html.Action("Pagination", "Home", new { sendAction = ViewContext.RouteData.Values["action"], ViewBag.lastPage, ViewBag.currentPage })
+}
+
+@section scripts{
+    <script>
+        function Unfollow(idMovie) {
+            $.ajax({
+                url: '@Url.Action("FollowMovie", "Movies")',
+                type: "POST",
+                data: JSON.stringify({ id: idMovie }),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: (result) => {
+                    document.querySelector("#follow_" + idMovie).remove();
+                    alert(result);
+                },
+                error: (err) => {
+                    alert("Lỗi: " + err.responseText);
+                }
+            })
+        }
+    </script>
 }

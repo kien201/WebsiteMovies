@@ -32,7 +32,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(user.userName, inputRememberPassword == "on");
                     if (ReturnUrl != null) return Redirect(ReturnUrl);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Movies");
                 }
             }
             return View(account);

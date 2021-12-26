@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="user-display-name fw-bold py-2">@curUser["displayName"]</div>
-                                <a href="#" class="btn-user-info p-3">
+                                <a href="@Url.Action("Index", "AccountInfo")" class="btn-user-info p-3">
                                     <i class="fas fa-info-circle"></i>
                                     Thông tin cá nhân
                                 </a>
@@ -132,7 +132,7 @@
                                         let str = '';
                                         $.each(result, (index, value) => {
                                             str += `<div class="col-md-6">
-                                                        <a href="/Home/Index/${value.id}">
+                                                        <a href="/Movies/MovieDetail/${value.id}">
                                                             <div class="movie-image">
                                                                 <img src="/Assets/Images/MovieImages/${value.image}">
                                                             </div>

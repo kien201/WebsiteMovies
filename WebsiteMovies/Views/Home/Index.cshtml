@@ -20,7 +20,7 @@
             @foreach(var item in Model)
             {
                 <div class="slider-item me-2">
-                    <a href="@Url.Action("", "", new { id = item.id })" title="@item.name">
+                    <a href="@Url.Action("MovieDetail", "Movies", new { id = item.id })" title="@item.name">
                         <div class="episode-latest fw-bold"> @item.Episode.Count/@(item.duration!=null ? item.duration.ToString() : "??") </div>
                         <div class="image" style="background-image: url('/Assets/Images/MovieImages/@item.image');"></div>
                         <div class="movie-name fw-bold"> @item.name </div>

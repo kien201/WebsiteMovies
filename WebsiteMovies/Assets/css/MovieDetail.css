@@ -1,7 +1,4 @@
 ﻿
-
-
-
 .heading_movie {
     background-color: #3a3a3a;
     ;
@@ -85,7 +82,7 @@
     .play_movie a {
     }
 
-        .play_movie a i {
+        .play_movie a {
             font-size: 40px;
             padding: 10px 20px;
             background-color: #25867d;
@@ -95,7 +92,7 @@
 .follow_movie {
 }
 
-    .follow_movie a i {
+    .follow_movie a {
         font-size: 40px;
         padding: 10px 20px;
         background-color: #369e69;
@@ -201,9 +198,6 @@
     display: flex;
     color: #ccc964;
 }
-
-    .heading_comment i {
-    }
 
     .heading_comment h3 {
         margin: 0 6px;
