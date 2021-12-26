@@ -76,15 +76,43 @@ namespace WebsiteMovies.Controllers
             return Json("Theo dõi phim " + movie.name + " thành công", JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult UpdateViews(int idMovie)
+        {
+            var dateView = db.ViewsByDate.Where(x => x.movieId == idMovie && x.day == DateTime.Now.Date).SingleOrDefault();
+            if(dateView != null)
+            {
+                dateView.numView += 1;
+                db.SaveChanges();
+            }
+            else
+            {
+                db.ViewsByDate.Add(new ViewsByDate() { day = DateTime.Now.Date, movieId = idMovie, numView = 1 });
+                db.SaveChanges();
+            }
+            return Json("Cập nhật thành công", JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult MovieEpisode(string id)
         {
             CustomModel custom = new CustomModel();
 
             int _id = Convert.ToInt32(id);
             int episode_option = Convert.ToInt32(Request["episode_option"]);
-            if(Session["curUser"] != null)
+            
+
+            var _movie = new Movie();
+            var _episode_option = new Episode();
+            var _list_episode = new List<Episode>();
+            var _account = new Account();
+
+            _movie = db.Movie.Find(_id);
+            _episode_option = db.Episode.Find(episode_option);
+            _list_episode = db.Episode.Where(x => x.movieId == _id).ToList();
+
+            if (Session["curUser"] != null)
             {
                 int curUserId = Convert.ToInt32((Session["curUser"] as Dictionary<string, string>)["id"]);
+                _account = db.Account.Find(curUserId);
                 var history = db.History.Where(x => x.accountId == curUserId && x.Episode.movieId == _id).FirstOrDefault();
                 if (history != null)
                 {
@@ -97,16 +125,6 @@ namespace WebsiteMovies.Controllers
                     db.SaveChanges();
                 }
             }
-
-            var _movie = new Movie();
-            var _episode_option = new Episode();
-            var _list_episode = new List<Episode>();
-            var _account = new Account();
-
-            _movie = db.Movie.Find(_id);
-            _episode_option = db.Episode.Find(episode_option);
-            _list_episode = db.Episode.Where(x => x.movieId == _id).ToList();
-            _account = db.Account.Find(1);
 
             custom.movie = _movie;
             custom.episode = _episode_option;
@@ -201,10 +219,10 @@ namespace WebsiteMovies.Controllers
             int curUserId = Convert.ToInt32((Session["curUser"] as Dictionary<string, string>)["id"]);
             int _id = Convert.ToInt32(id);
             int rating = Convert.ToInt32(Request["rating"]);
-            var check = db.MovieRate.Where(x => x.accountId == 1 && x.movieId == _id).FirstOrDefault();
+            var check = db.MovieRate.Where(x => x.accountId == curUserId && x.movieId == _id).FirstOrDefault();
             if (check == null)
             {
-                MovieRate mr = new MovieRate() { movieId = _id, accountId = 1, rateNumber = rating };
+                MovieRate mr = new MovieRate() { movieId = _id, accountId = curUserId, rateNumber = rating };
                 db.MovieRate.Add(mr);
                 db.SaveChanges();
             }

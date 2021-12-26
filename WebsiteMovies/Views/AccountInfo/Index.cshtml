@@ -13,7 +13,8 @@
     
 @Html.Partial("_menuProfile")
     <div class="account_info">
-        <form action="/"class="account_form" method="post">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "account_form" }))
+        {
             <div class="top_user_profile">
                 <div class="user_image">
                     <img src="~/Assets/Images/AccountImages/@(Model.image ?? "default-account-image.jpg")" class="" alt="Alternate Text" />
@@ -23,14 +24,14 @@
             </div>
             <div class="bottom_user_profile">
                 <label for="displayName">Biệt danh</label>
-                <input type="text" name="displayName" id="displayName"  class="text-white" value="@Model.displayName" />
+                <input type="text" name="displayName" id="displayName" class="text-white" value="@Model.displayName" />
                 <label for="userName">Tài khoản</label>
                 <input type="text" name="userName" id="userName" disabled="disabled" value="@Model.userName" />
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email"disabled="disabled" value="@Model.email" />
-                <input type="submit" name="name"class="submit_form" value="Xác nhận" />
+                <input type="text" name="email" id="email" disabled="disabled" value="@Model.email" />
+                <input type="submit" name="name" class="submit_form" value="Xác nhận" />
             </div>
-        </form>
+        }
     </div>
 </div>
 

@@ -29,7 +29,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="@Url.Action("Index", "Home")">
+        <a class="navbar-brand ps-3" href="@Url.Action("Index", "Movies")">
             <img src="~/Assets/Images/Logo.png" alt="Logo AnimeVn" width="80%" />
         </a>
         <!-- Sidebar Toggle-->
@@ -74,6 +74,10 @@
                         <a class="nav-link" href="@Url.Action("Index", "Comments")">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Quản lý bình luận
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Index", "MovieRates")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            Quản lý đánh giá
                         </a>
                     </div>
                 </div>

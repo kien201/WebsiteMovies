@@ -15,7 +15,7 @@
     <div class="">
         <div class="heading_movie_info_episode">
             <div clas="heading_movie_info_episode_frame">
-                <a href="sadasds" class="heading_movie_info_episode_link">
+                <a href="@Url.Action("MovieDetail","Movies", new { id = Model.movie.id })" class="heading_movie_info_episode_link">
                     <span><i class="fas fa-film heading_movie_info_episode_icon"></i></span>
                     <span class="heading_movie_info_episode_name">@Model.movie.name</span>
                 </a>
@@ -32,7 +32,7 @@
                     }
                     else
                     {
-                        <div>Tập @Model.episode.episodeNumber </div>
+                        <div>@Model.episode.episodeName </div>
                     }
                 }
 
@@ -43,7 +43,7 @@
                                               height: 600px;
                                               background-color: #000;">
 
-            <video class="xdPlayer" style="width:100%; height:100%" preload="auto" poster="~/Assets/Images/MovieImages/@(Model.movie.image ?? "default-movie-image.png")">
+            <video id="episodeVideo" class="xdPlayer" style="width:100%; height:100%" preload="auto" poster="~/Assets/Images/MovieImages/@(Model.movie.image ?? "default-movie-image.png")">
 
                 <source src="~/Assets/Videos/@Model.episode.video" type="video/mp4" />
                 <!-- You Can Also Add Other Video Formet Source -->
@@ -268,10 +268,29 @@
                 </div>
             </form>
         }
-
     </div>
 </section>
 @section scripts{
     <script src="~/Assets/js/player.js"></script>
     <script src="~/Assets/js/Movie.js"></script>
+    <script>
+        @*function UpdateViews(movieId) {
+            $.ajax({
+                url: '@Url.Action("UpdateViews", "Movies")',
+                type: "POST",
+                data: JSON.stringify({ idMovie: movieId }),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                error: (err) => {
+                    alert("Lỗi cập nhật views: " + err.responseText);
+                }
+            })
+        }
+        let curMovieId = @Model.movie.id;
+        let episodeVideo = document.querySelector("#episodeVideo");
+        episodeVideo.addEventListener('loadedmetadata', function () {
+            let timeOut = parseInt(episodeVideo.duration * 1000);
+            setTimeout(UpdateViews(curMovieId), timeOut);
+        });*@
+    </script>
 }
