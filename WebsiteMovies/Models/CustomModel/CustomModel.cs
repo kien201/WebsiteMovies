@@ -12,5 +12,7 @@ namespace WebsiteMovies.Models.CustomModel
         public List<Episode> list_episode { get; set; }
         public Episode episode { get; set; }
         public List<CategoryForMovies> list_categoryformovies { get; set; }
+        public List<MovieRate> movie_rate { get; set; }
+        public Account account { get; set; }
     }
 }

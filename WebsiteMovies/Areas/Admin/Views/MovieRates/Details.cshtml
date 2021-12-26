@@ -1,0 +1,43 @@
+﻿@model WebsiteMovies.Models.MovieRate
+
+@{
+    ViewBag.Title = "Chi tiết đánh giá phim";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Chi tiết đánh giá</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rateNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rateNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.displayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.displayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

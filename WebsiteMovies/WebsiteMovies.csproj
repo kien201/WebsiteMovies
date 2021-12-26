@@ -136,6 +136,7 @@
     <Compile Include="Areas\Admin\Controllers\EpisodesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MovieRatesController.cs" />
     <Compile Include="Areas\Admin\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SeriesController.cs" />
     <Compile Include="Controllers\AccountInfoController.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Models\MovieRate.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MovieRateMetadata.cs" />
+    <Compile Include="Models\MovieRatePartial.cs" />
     <Compile Include="Models\Series.cs">
       <DependentUpon>ModelMovies.tt</DependentUpon>
     </Compile>
@@ -216,9 +219,8 @@
   <ItemGroup>
     <Content Include="Assets\css\AccountInfo.css" />
     <Content Include="Assets\css\bootstrap-5-1-3.css" />
-    <Content Include="Assets\css\comment.css" />
+    <Content Include="Assets\css\comment-Rating.css" />
     <Content Include="Assets\css\customer-layout.css" />
-    <Content Include="Assets\css\main.css" />
     <Content Include="Assets\css\MovieDetail.css" />
     <Content Include="Assets\css\MovieEpisode.css" />
     <Content Include="Assets\css\player.css" />
@@ -232,7 +234,7 @@
     <Content Include="Assets\Images\MovieImages\default-movie-image.png" />
     <Content Include="Assets\Images\MovieImages\onepiece-movie-1.jpg" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
-    <Content Include="Assets\js\comment.js" />
+    <Content Include="Assets\js\Movie.js" />
     <Content Include="Assets\js\fontawesome-5-15-3-all.min.js" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\player.js" />
@@ -299,6 +301,11 @@
     <Content Include="Areas\Admin\Views\Comments\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieRates\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieRates\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieRates\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieRates\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MovieRates\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

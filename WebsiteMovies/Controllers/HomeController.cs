@@ -27,19 +27,21 @@ namespace WebsiteMovies.Controllers
             var _categoryformovies = new List<CategoryForMovies>();
             var _list_movie = new List<Movie>();
             var _episode = new Episode();
-
+            var _movie_rate = new List<MovieRate>();
 
             _movie = db.Movie.Find(_id);
             _list_episode = db.Episode.Where(x => x.movieId == _id).ToList();
             _categoryformovies = db.CategoryForMovies.Where(x => x.movieId == _id).ToList();
             _list_movie = db.Movie.Where(x => x.seriesId == _serieId).ToList();
             _episode = db.Episode.Where(x=>x.movieId==_id).FirstOrDefault();
+            _movie_rate = db.MovieRate.Where(x => x.movieId == _id).ToList();
 
             custom.movie = _movie;
             custom.list_episode = _list_episode;
             custom.list_categoryformovies = _categoryformovies;
             custom.list_movie = _list_movie;
             custom.episode = _episode;
+            custom.movie_rate = _movie_rate;
 
             return View(custom);
         }
@@ -54,14 +56,17 @@ namespace WebsiteMovies.Controllers
             var _movie = new Movie();
             var _episode_option = new Episode();
             var _list_episode = new List<Episode>();
+            var _account = new Account();
 
             _movie = db.Movie.Find(_id);
             _episode_option = db.Episode.Find(episode_option);
             _list_episode = db.Episode.Where(x => x.movieId == _id).ToList();
+            _account = db.Account.Find(1);
 
             custom.movie = _movie;
             custom.episode = _episode_option;
             custom.list_episode = _list_episode;
+            custom.account = _account;
             return View(custom);
         }
 
@@ -121,6 +126,26 @@ namespace WebsiteMovies.Controllers
             db.SaveChanges();
 
             return Json("Thành công", JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult RatingMovie(string id)
+        {
+            int _id = Convert.ToInt32(id);
+            int rating = Convert.ToInt32(Request["rating"]);
+            var check =db.MovieRate.Where(x=>x.accountId==1).FirstOrDefault();
+            if (check == null)
+            {
+                MovieRate mr = new MovieRate() { movieId = _id, accountId = 1, rateNumber=rating };
+
+                db.MovieRate.Add(mr);
+                db.SaveChanges();
+            }
+            else
+            {
+                check.rateNumber= rating;
+                db.SaveChanges();
+            }
+            return  Redirect(Request.UrlReferrer.ToString()); ;
         }
     }
 }

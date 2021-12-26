@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
 
+    $('.rating').hide();
+    $('.show-rating').click(function () {
+        $('.rating').show();
+        $('.comment').hide();
+        $('.comment_content_list').hide();
+    });
+    $('.show-comment').click(function () {
+        $('.rating').hide();
+        $('.comment').show();
+        $('.comment_content_list').show();
+    })
+
+
     const id_movie = $('#id_movie').val();
     load_comment();
     function load_comment() {

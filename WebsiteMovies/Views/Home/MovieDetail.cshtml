@@ -37,13 +37,25 @@
                 @{
                     var status = (Model.movie.status == 1) ? "Hoàn thành" : "Chưa hoàn thành";
 
-                 }
+                }
 
                 <div class="movie_list_intro">@status</div>
             </div>
+            @{ 
+                int dem = 0;
+                float tong = 0;
+                foreach (var item in Model.movie_rate)
+                {
+                    tong=Convert.ToSingle(tong+item.rateNumber);
+                    dem++;
+                       
+                }
+                tong = tong / dem;
+                var dtong=Math.Round(tong);
+            }
             <div class="score movie_list">
                 <div class="movie_list_name">Điểm</div>
-                <div class="movie_list_intro">9.8 || 4412 đánh giá</div>
+                <div class="movie_list_intro">@dtong || @dem đánh giá</div>
             </div>
             <div class="update_time movie_list">
                 <div class="movie_list_name">Phát hành</div>
@@ -71,7 +83,7 @@
         <div class="list_serie_bind">
             @foreach (var item in Model.list_movie)
             {
-                
+
                 <a href="" class="">@item.name</a>
             }
         </div>
@@ -108,6 +120,8 @@
             </div>
         </div>
     </div>
+
+  
     <div class="comment" style="margin-top:10px;">
         <div class="heading_comment">
             <i class="far fa-comment-alt heading_comment"></i>
@@ -120,6 +134,7 @@
     </div>
 
     @Html.Partial("_load_comment")
+
 
 
 </section>

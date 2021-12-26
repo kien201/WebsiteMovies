@@ -47,7 +47,7 @@ SELECT *FROM CategoryForMovies
 SELECT *FROM Comment
 SELECT *FROM Series
 SELECT *FROM Episode
-
+SELECT *FROM MovieRate
 SELECT *FROM History
 
 CREATE TABLE ViewsByDate(

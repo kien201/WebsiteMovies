@@ -16,6 +16,23 @@
     border-top-left-radius: 10px;
     border-top-right-radius:10px;
 }
+
+.show-comment, .show-rating {
+    background: #15d5e2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.rating {
+    background: #404040;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 .comment {
    
 }
@@ -104,4 +121,88 @@
     color: #7d7d7d;
     font-size: 12px;
     
+}
+.card {
+    padding: 50px 0 50px 50px ;
+    width: 80%;
+    border: none;
+    border-radius: 12px;
+}
+
+.circle-image img {
+    text-align: center;
+    border: 6px solid #fff;
+    border-radius: 100%;
+    padding: 0px;
+    top: -28px;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    z-index: 1;
+    background: #e7d184;
+    cursor: pointer
+}
+
+.name {
+    margin-top: -21px;
+    font-size: 18px
+}
+.rate {
+    width:50%;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.buttons {
+    top: 36px;
+    position: relative
+}
+
+.rating-submit {
+    border-radius: 15px;
+    color: #fff;
+    height: 49px
+}
+
+.rating-submit:hover {
+    color: #fff
 }
