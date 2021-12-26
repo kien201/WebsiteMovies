@@ -1,0 +1,65 @@
+.movie-list .movie-item {
+    position: relative;
+    width: 20%;
+    margin-bottom: 5px;
+    background: #000;
+    padding: 5px;
+    border: 2px solid var(--content-background);
+}
+
+    .movie-list .movie-item:hover {
+        opacity: 0.7;
+    }
+
+    .movie-list .movie-item .btn-unfollow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        color: var(--primary-text);
+        background-color: #000;
+        border: none;
+        padding: 4px 10px;
+    }
+
+        .movie-list .movie-item .btn-unfollow:hover {
+            background-color: #ff9090;
+        }
+
+    .movie-list .movie-item .episode-latest {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        padding: 5px 10px;
+        background-color: #383838;
+        border-radius: 4px;
+        border: 3px double #5a5a5a;
+        letter-spacing: 1px;
+    }
+
+    .movie-list .movie-item .image {
+        padding-top: 140%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .movie-list .movie-item .score {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        padding: 5px 10px;
+        background-color: #903a3a;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+
+    .movie-list .movie-item .movie-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-top: 5px;
+        padding: 3px 5px;
+        text-align: center;
+        color: #cc8d4c;
+    }

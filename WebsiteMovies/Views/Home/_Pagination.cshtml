@@ -1,0 +1,39 @@
+﻿@if (ViewBag.lastPage > 1)
+{
+    int lastPage = ViewBag.lastPage, currentPage = ViewBag.currentPage;
+    string sendAction = ViewBag.sendAction;
+    <div class="pagination justify-content-center my-2 py-2">
+        <div class="position-relative d-flex">
+            @Html.ActionLink("Đầu", sendAction, null, new { @class = "btn" })
+            @if (currentPage > 1 && currentPage <= lastPage)
+            {
+                @Html.ActionLink((currentPage - 1).ToString(), sendAction, new { page = currentPage - 1 }, new { @class = "btn" })
+            }
+            @Html.ActionLink(currentPage.ToString(), sendAction, new { page = currentPage }, new { @class = "btn btn-active" })
+            @if (currentPage + 1 <= lastPage)
+            {
+                @Html.ActionLink((currentPage + 1).ToString(), sendAction, new { page = currentPage + 1 }, new { @class = "btn" })
+            }
+            <a onclick="ToggleGoToPage()" class="btn btn-toggle-pagination">GO</a>
+            @Html.ActionLink("Cuối", sendAction, new { page = lastPage }, new { @class = "btn" })
+            <div id="formGoToPage" class="form-go-to-page d-none">
+                @using (Html.BeginForm(sendAction, "Home", FormMethod.Get))
+                {
+                    <div class="d-flex">
+                        <input class="input-paging" min="1" max="@lastPage" name="page" type="number" placeholder="Nhập trang cần đến" />
+                        <button class="btn-paging" type="submit">
+                            <i class="fas fa-mouse"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- pagination script -->
+    <script>
+        function ToggleGoToPage() {
+            const formGoToPage = document.querySelector('#formGoToPage');
+            formGoToPage.classList.toggle('d-none');
+        }
+    </script>
+}

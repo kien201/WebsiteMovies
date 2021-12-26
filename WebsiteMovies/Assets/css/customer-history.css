@@ -1,0 +1,57 @@
+.history-item a {
+    display: flex;
+    align-items: center;
+}
+
+    .history-item a:hover {
+        opacity: 0.7;
+    }
+
+.history-item .image {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    z-index: 1;
+    border: 5px solid #737373;
+    overflow: hidden;
+}
+
+    .history-item .image img {
+        width: 100%;
+    }
+
+.history-item .history-desc {
+    position: relative;
+    flex: 1;
+    background: #000;
+    padding: 0.75rem;
+    border: 1px solid #565656;
+    border-radius: 0 5px 5px 0;
+}
+
+    .history-item .history-desc::before {
+        content: "";
+        z-index: 0;
+        position: absolute;
+        top: -1px;
+        right: 100%;
+        width: 25px;
+        height: calc(100% + 2px);
+        background: #000;
+        border: solid #565656;
+        border-width: 1px 0;
+    }
+
+    .history-item .history-desc div:first-child {
+        font-size: 1.15rem;
+        color: #fff;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 75%;
+    }
+
+    .history-item .history-desc div:last-child {
+        color: #777;
+    }

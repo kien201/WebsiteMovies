@@ -71,6 +71,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 db.Episode.Add(episode);
+                db.Movie.Find(episode.movieId).updatedDate = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index", new { idMovie = episode.movieId });
             }
@@ -91,7 +92,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.movieId = new SelectList(db.Movie, "id", "name", episode.movieId);
+            ViewBag.movieId = new SelectList(db.Movie.OrderBy(x => x.name), "id", "name", episode.movieId);
             return View(episode);
         }
 
@@ -116,7 +117,7 @@ namespace WebsiteMovies.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", new { idMovie = episode.movieId });
             }
-            ViewBag.movieId = new SelectList(db.Movie, "id", "name", episode.movieId);
+            ViewBag.movieId = new SelectList(db.Movie.OrderBy(x => x.name), "id", "name", episode.movieId);
             return View(episode);
         }
 
@@ -141,9 +142,10 @@ namespace WebsiteMovies.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Episode episode = db.Episode.Find(id);
+            int movieId = (int)episode.movieId;
             db.Episode.Remove(episode);
             db.SaveChanges();
-            return RedirectToAction("Index", new { idMovie = episode.movieId });
+            return RedirectToAction("Index", new { idMovie = movieId });
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebsiteMovies.Models.History>
+@{
+    ViewBag.Title = "Lịch sử xem của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/Assets/css/customer-history.css">
+    <style>
+        .text-red {
+            color: #bd2727;
+        }
+    </style>
+}
+
+<div class="section-title my-2">
+    <div class="title bg-black color-gray">
+        Lịch sử xem
+    </div>
+</div>
+@if (Model.Count() == 0)
+{
+    <div class="section-content text-center p-3 bg-black">
+        <span class="text-red">Lịch sử trống</span>
+    </div>
+}
+else
+{
+    <div class="section-content my-2 p-3">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="history-item col-md-6 mb-3">
+                    <a href="@Url.Action("", "Home", new { id = item.Episode.movieId })">
+                        <div class="image">
+                            <img src="~/Assets/Images/MovieImages/@item.Episode.Movie.image">
+                        </div>
+                        <div class="history-desc">
+                            <div>@item.Episode.Movie.name</div>
+                            <div>Bạn đã xem tập @item.Episode.episodeNumber</div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    @Html.Action("Pagination", "Home", new { sendAction = ViewContext.RouteData.Values["action"], ViewBag.lastPage, ViewBag.currentPage })
+}

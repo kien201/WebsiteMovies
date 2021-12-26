@@ -1,0 +1,6 @@
+﻿@model IEnumerable<int>
+
+@foreach (var item in Model)
+{
+    @Html.ActionLink(item.ToString(), "ReleaseYear", "Movies", new { id = item }, new { @class = "col-4 p-2 text-center" })
+}
