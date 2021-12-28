@@ -1,8 +1,9 @@
 # WebsiteMovies
-A movie web using ASP.NET MVC + EF
-login by admin account:
-  -user name: admin
-  -pass: admin
-login by member account:
-  -user name: kien
-  -pass: kien123
+Login by admin account:<br />
+<ul>
+  <li>user name: admin</li>
+  <li>pass: admin</li>
+</ul>
+Login by member account:<br />
+  <li>user name: kien</li>
+  <li>pass: kien123</li>
